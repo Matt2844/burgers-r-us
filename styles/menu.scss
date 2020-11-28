@@ -1,0 +1,96 @@
+body {
+	background-color: lemonchiffon;
+	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+}
+
+.main-image {
+	display: flex;
+	margin-top: 97px;
+	justify-content: center;
+	flex-direction: column;
+	.page-title {
+		color: cornsilk;
+		display: flex;
+		justify-content: center;
+		margin: 15% 50% 10% 50%;
+		font-size: 72px;
+		border: 1px solid cornsilk;
+	}
+	p {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: monospace;
+		font-size: 50px;
+		color: cornsilk;
+	}
+}
+.main-content {
+	background-color: lemonchiffon;
+	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+	margin: 120px;
+}
+
+#menu {
+	display: flex;
+	align-items: center;
+}
+
+#appetizer-menu {
+	display: flex;
+	flex-direction: column;
+	.item {
+		display: flex;
+	}
+	h2 {
+		font-family: sans-serif;
+		font-weight: bold;
+		color: darkgoldenrod;
+		font-size: xx-large;
+		display: flex;
+		align-items: center;
+	}
+	.item-img {
+		display: flex;
+		margin: 20px;
+	}
+	.detail {
+		display: flex;
+		flex-direction: column;
+	}
+	.item-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+	}
+	.item-title {
+		font-family: fantasy;
+		font-size: x-large;
+		margin: 20px 20px 20px 20px;
+	}
+	.item-price {
+		font-family: fantasy;
+		font-size: large;
+	}
+	.item-description {
+		font-family: fantasy;
+		font-size: large;
+		margin: 20px;
+	}
+	.add-cart {
+		display: inline-block;
+		padding: 0.35em 1.2em;
+		border: 0.1em solid darkgoldenrod;
+		margin: 0px 600px 20px 20px;
+		box-sizing: border-box;
+		font-family: 'Roboto',sans-serif;
+		font-weight: 300;
+		color: darkgoldenrod;
+		text-align: center;
+		transition: all 0.2s;
+		&:hover {
+			color: #000000;
+			background-color: darkgoldenrod;
+		}
+	}
+}
