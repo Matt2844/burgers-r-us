@@ -16,6 +16,20 @@ body {
     width: 100%;
   }
 
+  .login-hidden {
+    border: solid 1px black;
+    cursor: pointer;
+  }
+
+  .login-hidden:hover {
+    background-color:red;
+  }
+
+  #login-visible {
+    margin-top: 10px;
+    visibility: hidden;
+  }
+
   h1 {
     color: #244751;
     text-align: center;

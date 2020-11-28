@@ -24,71 +24,66 @@
 
 <body>
 
+  <%- include partials/_nav.ejs %>
 
-  <nav class="nav-container">
-    <header>
-      <p>Burgers-R-Us</p>
-    </header>
-    <ul>
-      <li>Register</li>
-      <li>Login</li>
-      <li>Checkout Order</li>
-    </ul>
-  </nav>
+  <div class="main-image"
+    style="background-image : url(https://www.shakeshack.com/wp-content/themes/shakeshack/images/downloadable-wallpaper/2020-04-13_ZOOM_Burger_1920x1880-1.jpg);">
+    <h1 class="page-title">HUNGRY?</h1>
+    <p>Come pick up your favorite burger </p>
+  </div>
+  </div>
 
-    <div class="main-image" style="background-image : url(https://www.shakeshack.com/wp-content/themes/shakeshack/images/downloadable-wallpaper/2020-04-13_ZOOM_Burger_1920x1880-1.jpg);">
-        <h1 class="page-title">HUNGRY?</h1>
-        <p>Come pick up your favorite burger </p>
-       </div>
-    </div>
-
-    <div class="main-content">
-      <section id="menu">
-        <!-- Appetizer menu -->
-        <div class="menu" id="appetizer-menu">
-          <h2>APPETIZERS</h2>
-          <div class="item">
-            <div class="item-img">
-              <img class="product-img" src="https://thebusybaker.ca/wp-content/uploads/2017/12/rainbow-vegetable-skillet-nachos-fbig1.jpg" style="width:150px;height:150px">
-            </div>
-            <div class="detail">
-              <div class="item-header">
-                <h3 class="item-title">Nachos</h3>
-                <span class="item-dot"></span>
-                <span class="item-price">10$</span>
-              </div>
-              <p class="item-description">tortillas, cheese, olives, hot peppers, ...</p>
-              <button class="add-cart">Add to cart</button>
-            </div>
+  <div class="main-content">
+    <section id="menu">
+      <!-- Appetizer menu -->
+      <div class="menu" id="appetizer-menu">
+        <h2>APPETIZERS</h2>
+        <div class="item">
+          <div class="item-img">
+            <img class="product-img"
+              src="https://thebusybaker.ca/wp-content/uploads/2017/12/rainbow-vegetable-skillet-nachos-fbig1.jpg"
+              style="width:150px;height:150px">
           </div>
-          <div class="item">
-            <div class="item-img">
-              <img class="product-img" src="https://thebusybaker.ca/wp-content/uploads/2017/12/rainbow-vegetable-skillet-nachos-fbig1.jpg" style="width:150px;height:150px">
+          <div class="detail">
+            <div class="item-header">
+              <h3 class="item-title">Nachos</h3>
+              <span class="item-dot"></span>
+              <span class="item-price">10$</span>
             </div>
-            <div class="detail">
-              <div class="item-header">
-                <h3 class="item-title">App 2</h3>
-                <span class="item-dot"></span>
-                <span class="item-price">12$</span>
-              </div>
-              <p class="item-description">ingredient app 2</p>
-              <button class="add-cart">Add to cart</button>
-            </div>
+            <p class="item-description">tortillas, cheese, olives, hot peppers, ...</p>
+            <button class="add-cart">Add to cart</button>
           </div>
-            <div class="item">
-              <div class="item-img">
-                <img class="product-img" src="./docs/app3.png">
-              </div>
-              <div class="detail">
-                <div class="item-header">
-                  <h3 class="item-title">App 3</h3>
-                  <span class="item-dot"></span>
-                  <span class="item-price">12$</span>
-                </div>
-                <p class="item-description">ingredients app 3</p>
-                <button class="add-cart">Add to cart</button>
-              </div>
+        </div>
+        <div class="item">
+          <div class="item-img">
+            <img class="product-img"
+              src="https://thebusybaker.ca/wp-content/uploads/2017/12/rainbow-vegetable-skillet-nachos-fbig1.jpg"
+              style="width:150px;height:150px">
+          </div>
+          <div class="detail">
+            <div class="item-header">
+              <h3 class="item-title">App 2</h3>
+              <span class="item-dot"></span>
+              <span class="item-price">12$</span>
             </div>
+            <p class="item-description">ingredient app 2</p>
+            <button class="add-cart">Add to cart</button>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-img">
+            <img class="product-img" src="./docs/app3.png">
+          </div>
+          <div class="detail">
+            <div class="item-header">
+              <h3 class="item-title">App 3</h3>
+              <span class="item-dot"></span>
+              <span class="item-price">12$</span>
+            </div>
+            <p class="item-description">ingredients app 3</p>
+            <button class="add-cart">Add to cart</button>
+          </div>
+        </div>
         <!-- Start burger menu -->
         <div class="menu" id="burger-menu">
           <h2>BURGERS</h2>
@@ -102,7 +97,8 @@
                 <span class="item-dot"></span>
                 <span class="item-price">20.95$</span>
               </div>
-              <p class="item-description">Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey Jack. Also served without mushrooms for people with working taste buds</p>
+              <p class="item-description">Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
+                Jack. Also served without mushrooms for people with working taste buds</p>
               <button class="add-cart">Add to cart</button>
             </div>
           </div>
@@ -116,17 +112,64 @@
                 <span class="item-dot"></span>
                 <span class="item-price">32.95$$</span>
               </div>
-              <p class="item-description">6 quarter-pound beef patties, bacon, 3 slices of Monterey Jack & cheddar because screw that diet!</p>
+              <p class="item-description">6 quarter-pound beef patties, bacon, 3 slices of Monterey Jack & cheddar
+                because screw that diet!</p>
               <button class="add-cart">Add to cart</button>
             </div>
           </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="./docs/burger1.png" style="width:70px;height:70px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title">Burger 3</h3>
+                <span class="item-dot"></span>
+                <span class="item-price">12$</span>
+              </div>
+              <p class="item-description">ingredients burger 3</p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+
+          <!-- Start Poutine menu -->
+          <div class="menu" id="poutine-menu">
+            <h2>POUTINE</h2>
             <div class="item">
               <div class="item-img">
-                <img class="product-img" src="./docs/burger1.png" style="width:70px;height:70px">
+                <img class="product-img" src="./docs/poutine1.png">
               </div>
               <div class="detail">
                 <div class="item-header">
-                  <h3 class="item-title">Burger 3</h3>
+                  <h3 class="item-title">poutine 1</h3>
+                  <span class="item-dot"></span>
+                  <span class="item-price">12$</span>
+                </div>
+                <p class="item-description">ingredient poutine 1</p>
+                <button class="add-cart">Add to cart</button>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-img">
+                <img class="product-img" src="./docs/poutine2.png">
+              </div>
+              <div class="detail">
+                <div class="item-header">
+                  <h3 class="item-title">Poutine 2</h3>
+                  <span class="item-dot"></span>
+                  <span class="item-price">12$</span>
+                </div>
+                <p class="item-description">ingredient poutine 2</p>
+                <button class="add-cart">Add to cart</button>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-img">
+                <img class="product-img" src="./docs/poutine3.png">
+              </div>
+              <div class="detail">
+                <div class="item-header">
+                  <h3 class="item-title">Poutine 3</h3>
                   <span class="item-dot"></span>
                   <span class="item-price">12$</span>
                 </div>
@@ -134,55 +177,9 @@
                 <button class="add-cart">Add to cart</button>
               </div>
             </div>
-
-            <!-- Start Poutine menu -->
-            <div class="menu" id="poutine-menu">
-              <h2>POUTINE</h2>
-              <div class="item">
-                <div class="item-img">
-                  <img class="product-img" src="./docs/poutine1.png">
-                </div>
-                <div class="detail">
-                  <div class="item-header">
-                    <h3 class="item-title">poutine 1</h3>
-                    <span class="item-dot"></span>
-                    <span class="item-price">12$</span>
-                  </div>
-                  <p class="item-description">ingredient poutine 1</p>
-                  <button class="add-cart">Add to cart</button>
-                </div>
-              </div>
-              <div class="item">
-                <div class="item-img">
-                  <img class="product-img" src="./docs/poutine2.png">
-                </div>
-                <div class="detail">
-                  <div class="item-header">
-                    <h3 class="item-title">Poutine 2</h3>
-                    <span class="item-dot"></span>
-                    <span class="item-price">12$</span>
-                  </div>
-                  <p class="item-description">ingredient poutine 2</p>
-                  <button class="add-cart">Add to cart</button>
-                </div>
-              </div>
-                <div class="item">
-                  <div class="item-img">
-                    <img class="product-img" src="./docs/poutine3.png">
-                  </div>
-                  <div class="detail">
-                    <div class="item-header">
-                      <h3 class="item-title">Poutine 3</h3>
-                      <span class="item-dot"></span>
-                      <span class="item-price">12$</span>
-                    </div>
-                    <p class="item-description">ingredients burger 3</p>
-                    <button class="add-cart">Add to cart</button>
-                  </div>
-                </div>
-        </div>
-      </section>
-    </div>
+          </div>
+    </section>
+  </div>
 
 </body>
 
