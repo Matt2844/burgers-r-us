@@ -29,12 +29,14 @@ body {
 .main-content {
 	background-color: lemonchiffon;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-	width:120%;
+  width:120%;
+  overflow: hidden;
 }
 
 #menu {
 	display: flex;
-  align-items: center;
+  flex-direction: column;
+  border: 3px solid darkgoldenrod;
   margin: 8%;
 }
 
@@ -43,49 +45,65 @@ body {
   flex-direction: column;
   border: 3px solid darkgoldenrod;
 	.item {
-		display: flex;
+    display: flex;
+    padding:10px;
 	}
 	h2 {
+    border-bottom: 1px solid darkgoldenrod;
 		font-family: sans-serif;
 		font-weight: bold;
 		color: darkgoldenrod;
-		font-size: xx-large;
+		font-size: 36px;;
 		display: flex;
-    align-items: center;
-    margin: 20px;
+    justify-content: center;
+    margin: 15px;
 	}
 	.item-img {
 		display: flex;
-		margin: 20px;
+    margin: 15px;
+    padding-left:15px;
+    width:20%;
+    align-items: center;
 	}
 	.detail {
 		display: flex;
-		flex-direction: column;
+    flex-direction: column;
+    margin: 10px 10px 10px 0px;
+    padding:10px;
+    width: 80%
 	}
 	.item-header {
 		display: flex;
-		justify-content: space-between;
 		align-items: baseline;
 	}
 	.item-title {
 		font-family: fantasy;
-		font-size: x-large;
+    font-size: 28px;
+    font-weight: 600;
 		margin: 20px 20px 20px 20px;
-	}
+  }
+  .item-dot {
+    flex: 1;
+    border-bottom: 1px dashed #aaa;
+    margin: 0 15px;
+  }
 	.item-price {
 		font-family: fantasy;
-		font-size: large;
-	}
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0% 5% 0% 5%;
+  }
 	.item-description {
 		font-family: fantasy;
 		font-size: large;
-		margin: 20px;
+		margin: 0px 20px 0px 20px;
 	}
 	.add-cart {
 		display: inline-block;
 		padding: 0.35em 1.2em;
-		border: 0.1em solid darkgoldenrod;
-		margin: 0px 600px 20px 20px;
+    border: 0.1em solid darkgoldenrod;
+    background-color: transparent;
+		margin: 20px 500px 20px 10px;
 		box-sizing: border-box;
 		font-family: 'Roboto',sans-serif;
 		font-weight: 300;
