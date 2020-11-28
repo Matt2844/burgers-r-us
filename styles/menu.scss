@@ -7,13 +7,14 @@ body {
 	display: flex;
 	margin-top: 97px;
 	justify-content: center;
-	flex-direction: column;
+  flex-direction: column;
+  width:120%;
 	.page-title {
 		color: cornsilk;
 		display: flex;
 		justify-content: center;
 		margin: 15% 50% 10% 50%;
-		font-size: 72px;
+		font-size: 400%;
 		border: 1px solid cornsilk;
 	}
 	p {
@@ -21,24 +22,26 @@ body {
 		justify-content: center;
 		align-items: center;
 		font-family: monospace;
-		font-size: 50px;
+		font-size: 300%;
 		color: cornsilk;
 	}
 }
 .main-content {
 	background-color: lemonchiffon;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-	margin: 120px;
+	width:120%;
 }
 
 #menu {
 	display: flex;
-	align-items: center;
+  align-items: center;
+  margin: 8%;
 }
 
 #appetizer-menu {
 	display: flex;
-	flex-direction: column;
+  flex-direction: column;
+  border: 3px solid darkgoldenrod;
 	.item {
 		display: flex;
 	}
@@ -48,7 +51,8 @@ body {
 		color: darkgoldenrod;
 		font-size: xx-large;
 		display: flex;
-		align-items: center;
+    align-items: center;
+    margin: 20px;
 	}
 	.item-img {
 		display: flex;
