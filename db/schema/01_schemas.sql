@@ -18,13 +18,14 @@ CREATE TABLE products (
   name VARCHAR(255) NOT NULL,
   picture VARCHAR(255) NOT NULL,
   description TEXT,
+  price FLOAT,
   category VARCHAR(255) NOT NULL
 );
 
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  price FLOAT,
+  Total_price FLOAT,
   created_at TIMESTAMP,
   estimated_time FLOAT,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
