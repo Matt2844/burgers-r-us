@@ -8,7 +8,43 @@
 </head>
 
 <body>
-  <h3>Checkout page</h3>
+  <header>
+    <!-- <%- include('partials/_nav') %> -->
+   </header>
+  <main id="main-cart">
+    <div class="cart">
+      <h1 class="page-title">CART ::after</h1>
+      <div class="cart-container">
+        <div class="empty-cart-msg">
+          <p>You're cart is empty! Go add some awesome food in it!</p>
+        </div>
+        <div class="cart-holder">
+          <ul class="cart-item">
+            <li class="cart-item-image">
+              <!-- need to href="path to the product chosen" -->
+              <!-- depending how many items are in the cart -->
+              <div class="cart-item-detail">
+                <a class="cart-item-details-name">
+                  <!-- href="path to the product chosen" -->
+                </a>
+                <div class="cart-item-price"></div>
+                <button class="remove-item" type="button">Remove</button>
+              </div>
+            </li>
+          </ul>
+          <div class="cart-footer">
+            <div class="cart-totals">
+              <span class="cart-total-amount"></span>
+            </div>
+          </div>
+          <div class="cart-footer-button">
+          <button type="submit" name="order" class="button order-btn">Order</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
 </body>
 
 </html>
