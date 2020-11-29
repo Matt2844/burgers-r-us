@@ -34,9 +34,9 @@ module.exports = (pool) => {
 
   // }
 
-  getUserWithEmail('Kiramz@mail.com')
-  getUserWithEmail('bloooby@mail.com')
-  exports.getUserWithEmail = getUserWithEmail;
+  // getUserWithEmail('Kiramz@mail.com')
+  // getUserWithEmail('bloooby@mail.com')
+  // exports.getUserWithEmail = getUserWithEmail;
 
 
   // find user with his/her id (probably for the checkout to know the phone number)
