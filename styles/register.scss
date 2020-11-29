@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin-top: 120px;
+  background-color: lemonchiffon;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+
+}
+
+.register-inputs {
+  border: 1px solid black;
+  width: 15em;
+  height: 20em;
+  margin-top: 12%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 1px 1px 5px black;
+}
+
+section input {
+  margin: 1em;
+  padding: 0.6em;
+}
+
+section button {
+  width: 5em;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2em;
+  padding: 0.3em;
+}
+
+
+
+
