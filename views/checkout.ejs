@@ -2,49 +2,126 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Page</title>
+  <title>Home Page</title>
+
+  <!-- Bootstrap and jQuery -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/checkout.css" type="text/css" />
+  <!-- Internal JS -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <!-- External CSS -->
+  <link href="Bttn.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+
 </head>
-
 <body>
+  <header>
+    <%- include('partials/_nav')%>
+  </header>
 
-  <%- include partials/_nav.ejs %>
+  <div class="bkg-image"
+  style="background-image : url('./docs/burgers_fun.png') ">
+  <h1 class="page-title">CONFIRM YOUR ORDER</h1>
+</div>
+<div id="shopping-cart">
+  <div class="title">YOUR CART</div>
 
-  <main id="main-cart">
-    <div class="cart">
-      <h1 class="page-title">CART </h1>
-      <div class="cart-container">
-        <div class="empty-cart-msg">
-          <p>You're cart is empty! Go add some awesome food in it!</p>
-        </div>
-        <div class="cart-holder">
-          <ul class="cart-item">
-            <li class="cart-item-image">
-              <!-- need to href="path to the product chosen" -->
-              <!-- depending how many items are in the cart -->
-              <div class="cart-item-detail">
-                <a class="cart-item-details-name">
-                  <!-- href="path to the product chosen" -->
-                </a>
-                <div class="cart-item-price"></div>
-                <button class="remove-item" type="button">Remove</button>
-              </div>
-            </li>
-          </ul>
-          <div class="cart-footer">
-            <div class="cart-totals">
-              <span class="cart-total-amount"></span>
-            </div>
+  <!-- Products -->
+  <div class="all-items">
+    <div id="order-item">
+      <div class="remove-item">
+        <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
+      </div>
+      <div class="item-img">
+        <img src="./docs/burger1.png" style="width:150px;height:150px">
+      </div>
+      <div class="item-details">
+        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
+        Jack. Also served without mushrooms for people with working taste buds">
+          Burger Cowboy
+        </button>
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <i class="fas fa-plus"></i>
+          </button>
+          <input class="number-item" type="text" name="number" value="1">
+          <button class="minus-btn" type="button" name="button">
+            <i class="fas fa-minus"></i>
+          </button>
+          <div class="cart-total-price">35.95$</div>
+            <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
           </div>
-          <div class="cart-footer-button">
-            <button type="submit" name="order" class="button order-btn">Order</button>
-          </div>
-
         </div>
       </div>
     </div>
-  </main>
+    <!-- second item -->
+    <div id="order-item">
+      <div class="remove-item">
+        <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
+      </div>
+      <div class="item-img">
+        <img src="./docs/burger1.png" style="width:150px;height:150px">
+      </div>
+      <div class="item-details">
+        <a class="cart-item-name">burger Cowboy
+          <!-- reference to the item chosen -->
+        </a>
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <i class="fas fa-plus"></i>
+          </button>
+          <input class="number-item" type="text" name="number" value="1">
+          <button class="minus-btn" type="button" name="button">
+            <i class="fas fa-minus"></i>
+          </button>
+          <div class="cart-total-price">35.95$</div>
+        </div>
+      </div>
+    </div>
+    <!-- third item -->
+    <div id="order-item">
+      <div class="remove-item">
+        <span class="detele-btn"><i class="far fa-trash-alt fa-2x"></i></span>
+      </div>
+      <div class="item-img">
+        <img src="./docs/burger1.png" style="width:150px;height:150px">
+      </div>
+      <div class="item-details">
+        <a class="cart-item-name">burger Cowboy
+          <!-- reference to the item chosen -->
+        </a>
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <i class="fas fa-plus"></i>
+          </button>
+          <input class="number-item" type="text" name="number" value="1">
+          <button class="minus-btn" type="button" name="button">
+            <i class="fas fa-minus"></i>
+          </button>
+          <div class="cart-total-price">35.95$</div>
+            <!-- <input class="price" type="text" name="price"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 
 </html>
