@@ -1,0 +1,26 @@
+<nav class="nav-container">
+  <header>
+    <p>Burgers-R-Us</p>
+  </header>
+  <form id="login-visible" action="/login" method="POST">
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button type="submit">Enter</button>
+  </form>
+  <ul>
+    <li href="/register">Register</li>
+    <li class="login-hidden" onclick="loginVisible()">Login</li>
+    <li href="/checkout">Checkout Order</li>
+  </ul>
+</nav>
+
+<script>
+
+  const loginVisible = () => {
+
+    let form = document.getElementById("login-visible");
+
+    form.style.visibility = "visible";
+  }
+
+</script>
