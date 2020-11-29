@@ -11,6 +11,7 @@ module.exports = (db) => {
     .catch((err => console.error('query error', err.stack)));
   }
 
+  console.log(getUserWithEmail('Kiramz@mail.com'))
   exports.getUserWithEmail = getUserWithEmail;
 
 
@@ -27,12 +28,12 @@ module.exports = (db) => {
 
   exports.getUserWithId = getUserWithId;
 
-
+  //// FEW VALUES HARDCODED BUT WILL HAVE TO REFACTOR POST REGISTR ROUTE TO USE THIS AND PASS IT A USER OBJECT
   // add user to database when Register
   const addUser =  function(user) {
     return db.query(`
     INSERT INTO users (name, phone_number, email, password)
-    VALUES ($1, $2, $3, $4) RETURNING *;`,
+    VALUES ('ThatDude', '111-111-1111', $1, $2) RETURNING *;`,
     [user.name, user.phone_number, user.email, user.password])
     .then(res => res.row[0])
     .catch((err => console.error('query error', err.stack)));
@@ -60,3 +61,4 @@ module.exports = (db) => {
 
 
 }
+
