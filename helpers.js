@@ -1,18 +1,42 @@
-module.exports = (db) => {
+
+const { Pool } = require('pg');
+const dbParams = require('./lib/db.js');
+const db = new Pool(dbParams);
+db.connect();
+
+const pool = new Pool({
+  user: "labber",
+  password: "labber",
+  host: "localhost",
+  database: "midterm",
+});
+
+
+module.exports = (pool) => {
 
   // find a user with his/her email for login and register to see if email already in db
-  const getUserWithEmail = function(email) {
-    return db.query(`
-    SELECT *
-    FROM users
-    WHERE email = $1
-    `, [email])
-    .then(res => res.rows[0])
-    .catch((err => console.error('query error', err.stack)));
-  }
+  // const getUserWithEmail = function(email) {
+  //   const values = [email];
 
-  console.log(getUserWithEmail('Kiramz@mail.com'))
-  exports.getUserWithEmail = getUserWithEmail;
+  //   let sqlQuery = `
+  //   SELECT *
+  //   FROM users
+  //   WHERE email = $1;`
+  //   return pool.query(sqlQuery, values).then((res) => console.log(res.rows))
+
+  //   // return db.query(`
+  //   // SELECT *
+  //   // FROM users
+  //   // WHERE email = $1
+  //   // `, [email])
+  //   // .then(res => res.rows[0])
+  //   // .catch((err => console.error('query error', err.stack)));
+
+  // }
+
+  // getUserWithEmail('Kiramz@mail.com')
+  // getUserWithEmail('bloooby@mail.com')
+  // exports.getUserWithEmail = getUserWithEmail;
 
 
   // find user with his/her id (probably for the checkout to know the phone number)
