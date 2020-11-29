@@ -112,7 +112,8 @@ body {
 		transition: all 0.2s;
 		&:hover {
 			color: #000000;
-			background-color: darkgoldenrod;
+      background-color: darkgoldenrod;
+      transform: scale(1.2);
 		}
 	}
 }
