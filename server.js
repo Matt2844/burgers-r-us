@@ -16,6 +16,14 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+////////////POOL ADDED TO ACCESS DB-------------------------
+const pool = new Pool({
+  user: "labber",
+  password: "labber",
+  host: "localhost",
+  database: "midterm",
+});
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -56,8 +64,14 @@ app.get('/register', (req, res) => {
   res.render("register");
 });
 
+////// WILL NEED TO add NAME AND PHONE NUMBER once forms have been updated in the REGISTER HTML
+////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   console.log(req.body.email, req.body.password)
+  let values = [req.body.email, req.body.password]
+  let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ('ThatDude', '111-111-1111', $1, $2) RETURNING *;`
+  res.redirect('/')
+  return pool.query(sqlQuery, values).then((res) => console.log(res.rows[0]));
 });
 
 app.get('/checkout', (req, res) => {
