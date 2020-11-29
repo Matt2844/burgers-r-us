@@ -23,3 +23,17 @@ module.exports = (db) => {
   });
   return router;
 };
+
+
+router.get('users/register', (req, res) => {
+  res.send("Register now");
+})
+
+router.get('register', (req, res) => {
+  res.send("Register now");
+})
+
+router.get('/register', (req, res) => {
+  res.send("Register now");
+})
+
