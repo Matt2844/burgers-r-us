@@ -26,4 +26,4 @@ INSERT INTO products (name, picture, description, price, category)
 VALUES ('Pabs Blue Ribbon', 'undefinedURL', 'American Lager. Buy two and get a free beanie',  6.95, 'Beverages');
 
 INSERT INTO products (name, picture, description, price, category)
-VALUES ('Heineken', 'undefinedURL', 'Refreshing pale beer. Served in a coffee cup to anyone ordering before noon',  6.95, 'Beverages');
+VALUES ('Sodas', 'undefinedURL', 'All the sodas, none of the diet options',  2.95, 'Beverages');
