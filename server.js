@@ -71,16 +71,21 @@ app.get('/register', (req, res) => {
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   console.log(req.body.name, req.body.phone, req.body.email, req.body.password)
-  if (!getUserWithEmail(req.body.email)) {
+  if (getUserWithEmail(req.body.email)) {
+    res.send("You're already registered, please log-in")
+    //would need to implement a delay and redirect but set timeout isn't working
+  } else {
     let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
     let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
     res.redirect('/')
-    return pool.query(sqlQuery, values).then((res) => console.log(res.rows[0]));
-  } else {
-    res.send("You're already registered, please log-in")
+    return pool.query(sqlQuery, values).then((res) => res.rows[0]);
   }
 
 });
+
+app.post('/login', (req, res) => {
+  console.log(req.body.email, req.body.password)
+})
 
 app.get('/checkout', (req, res) => {
   res.render("checkout");

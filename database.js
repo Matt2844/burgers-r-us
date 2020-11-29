@@ -19,6 +19,7 @@ const pool = new Pool({
  * @return {Promise<{}>} A promise to the user.
  */
 const getUserWithEmail = function (email) {
+  console.log("Email being received", email)
   const values = [email];
 
   const sqlQuery = ` SELECT *
@@ -27,11 +28,12 @@ const getUserWithEmail = function (email) {
   ; `;
 
   return pool.query(sqlQuery, values).then((res) => {
-    if (res.rows[0] === undefined) {
+    console.log("Length VALUE", res.rows.length)
+    if (res.rows.length === 0) {
       console.log(null)
       return null;
     }
-    console.log(res.rows[0])
+    console.log(res.rows)
     return res.rows[0];
   });
 };
