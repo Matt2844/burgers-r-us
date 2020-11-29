@@ -50,9 +50,21 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//ROUTES BELOW PROBABLY NEED TO BE MOVED
+
 app.get('/register', (req, res) => {
   res.render("register");
-})
+});
+
+app.post('/register', (req, res) => {
+  console.log(req.body.email, req.body.password)
+});
+
+app.get('/checkout', (req, res) => {
+  res.render("checkout");
+});
+
+//ROUTES ABOVE PROBABLY NEED TO BE MOVED
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
