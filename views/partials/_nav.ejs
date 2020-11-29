@@ -1,25 +1,28 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
 <nav class="nav-container">
   <header>
-    <p>Burgers-R-Us</p>
+    <div id="logo">
+      <img class="logo-img" src="../docs/burger_logo.png" style="width:70px;height:70px">
+      <h1>Burgers-R-Us</h1>
+    </div>
   </header>
   <form id="login-visible" action="/login" method="POST">
     <input type="text" placeholder="Username">
     <input type="password" placeholder="Password">
     <button type="submit">Enter</button>
   </form>
-  <ul>
-    <li href="/register">Register</li>
-    <li class="login-hidden" onclick="loginVisible()">Login</li>
-    <li href="/checkout">Checkout Order</li>
-  </ul>
+  <div class="list-action">
+    <div class="register-link" href="/register">Register</div>
+    <div class="login-hidden" onclick="loginVisible()">Login</div>
+    <div class="checkout-link" href="/checkout">Checkout</div><i class="fas fa-shopping-cart"></i>
+  </div>
 </nav>
 
 <script>
 
   const loginVisible = () => {
-
     let form = document.getElementById("login-visible");
-
     form.style.visibility = "visible";
   }
 

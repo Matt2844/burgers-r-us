@@ -5,19 +5,39 @@ body {
   height: 2000px;
 }
 
-  .nav-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 1px solid black;
-    padding: 5px;
-    position: fixed;
-    top: 0;
-    width: 100%;
+
+.nav-container {
+  background-color: lemonchiffon;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+  #logo {
+    display:flex;
+    align-items: center;
+  }
+
+  #logo .logo-img {
+    margin: 30px 0px 30px 50px;
+  }
+
+  #logo h1 {
+    font-size: 36px;
+    text-align: center;
+    color: black;
+    margin: 30px 0px 30px 10px;
+    font-family: none;
   }
 
   #login-visible {
-    margin-top: 1.3em;
+    display: flex;
+    align-items: center;
     visibility: hidden;
   }
 
@@ -26,16 +46,13 @@ body {
   }
 
   .login-hidden:hover {
-    background-color: red;
+    border: 2px solid color #000000;
+    background-color: lemonchiffon;
+    transform: scale(1.2);
     cursor: pointer;
-  }
+    border: 1px solid black;
+    padding: 5px;
 
-  h1 {
-    color: #244751;
-    text-align: center;
-    margin-top: 25%;
-    border: 1px solid white;
-    margin-bottom: 10%;
   }
 
   .menu-container {
@@ -43,3 +60,22 @@ body {
     border: 1px solid black;
   }
 
+  .list-action {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    font-family: fantasy;
+    font-size: 20px;
+  }
+
+  .list-action .register-link {
+    padding: 20px;
+  }
+
+  .list-action .login-link {
+    padding: 20px;
+  }
+
+  .list-action .checkout-link {
+    padding: 20px;
+  }
