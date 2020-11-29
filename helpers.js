@@ -1,3 +1,17 @@
+
+const { Pool } = require('pg');
+const dbParams = require('./lib/db.js');
+const db = new Pool(dbParams);
+db.connect();
+
+const pool = new Pool({
+  user: "labber",
+  password: "labber",
+  host: "localhost",
+  database: "midterm",
+});
+
+
 module.exports = (db) => {
 
   // find a user with his/her email for login and register to see if email already in db
@@ -11,7 +25,7 @@ module.exports = (db) => {
     .catch((err => console.error('query error', err.stack)));
   }
 
-  console.log(getUserWithEmail('Kiramz@mail.com'))
+  getUserWithEmail('Kiramz@mail.com')
   exports.getUserWithEmail = getUserWithEmail;
 
 
