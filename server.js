@@ -9,6 +9,16 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+/// cookie sessions
+
+const cookieSession = require("cookie-session");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -70,7 +80,6 @@ app.get('/register', (req, res) => {
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
-    console.log("THIS-IS-WHAT-WE-WANT:",response)
     if(!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
@@ -85,9 +94,7 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
   getUserWithEmail(req.body.email).then((response) => {
-    console.log(response.email, response.password)
     if(response === null) {
-      console.log("response is supposed to be empty here", response)
       res.send("You don't have an account, you need to register")
     } else if (response.password !== req.body.password) {
       res.send("Invalid Login Credentials, please check your information and try again")
