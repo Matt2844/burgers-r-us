@@ -5,13 +5,14 @@ $primary-color: #b8860b;
 
 
 body {
-  background-color: #EEE;
+  background-color: white;
+	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
   height: 2000px;
 }
 
 
 .nav-container {
-  background-color: lemonchiffon;
+  background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/food.png");
   display: flex;
   flex-direction: row;
@@ -37,38 +38,7 @@ body {
     color: black;
     margin: 30px 0px 30px 10px;
     font-family: $title-text;
-  }
-
-  #login-visible {
-    display: flex;
-    align-items: center;
-    visibility: hidden;
-    .form-control {
-      background-color: transparent;
-      border: 2px solid $primary-color;
-      margin:10px;
-    }
-    button {
-      margin: 10px;
-      border: ridge;
-      background-color: transparent;
-      font-family: 'Montserrat';
-      font-weight: 400;
-    }
-  }
-
-  .login-hidden {
-    border: 1px black
-  }
-
-  .login-hidden:hover {
-    border: 2px solid color #000000;
-    background-color: lemonchiffon;
-    transform: scale(1.1);
-    cursor: pointer;
-    border: 1px solid black;
-    padding: 5px;
-
+    text-decoration: none;
   }
 
   .menu-container {
@@ -89,21 +59,115 @@ body {
   .register-link a {
     color: #000000;
     text-decoration: none;
+    padding: 20px;
   }
 
   .checkout-link a {
     color: #000000;
     text-decoration: none;
-  }
-
-  .list-action .register-link {
     padding: 20px;
   }
 
-  .list-action .login-link {
-    padding: 20px;
+
+
+  nav ul {
+    list-style: none;
+    position: relative;
+    float: right;
+    border-radius: 3px;
   }
 
-  .list-action .checkout-link {
-    padding: 20px;
+
+  nav #login-trigger {
+    border-radius: 3px 0 0 3px;
+    margin: 20px;
+    background-color: transparent;
+    font-family: $text;
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+
   }
+
+  nav fieldset {
+    border: none;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+  }
+
+  nav #login-trigger:hover,
+  nav #login .active,
+  nav #signup a:hover {
+    background: transparent;
+  }
+
+  nav #login-content {
+    position: absolute;
+    border: 1px solid goldenrod;
+    top: 24px;
+    right: 0;
+    z-index: 999;
+    background: lemonchiffon;
+    background-image: linear-gradient(top, #fff, #eee);
+    padding: 15px;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
+    border-radius: 3px 0 3px 3px;
+    visibility: hidden;
+    display:none;
+  }
+
+
+  #login-visible {
+    display: flex;
+    align-items: center;
+    .form-control {
+      background-color: lemonchiffon;
+      border: 2px solid $primary-color;
+      margin:10px;
+    }
+
+  nav li #login-content {
+    right: 0;
+    width: 250px;
+  }
+
+  #inputs input {
+    background: lemonchiffon;
+    border: 2px solid $primary-color;
+    padding: 6px 5px;
+    margin: 0 0 5px 0;
+    width: 238px;
+    border-radius: 3px;
+
+  }
+
+  #inputs input:focus {
+    background-color: #fff;
+    border-color: #e8c291;
+    outline: none;
+    box-shadow: 0 0 0 1px #e8c291 inset;
+  }
+
+  #login #actions {
+    margin: 10px 0 0 0;
+  }
+
+  #login #submit {
+    margin: 10px;
+    background-color: lemonchiffon;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    border-radius: 3px;
+    height: 30px;
+    padding: 0;
+    width: 100px;
+    cursor: pointer;
+    color: transparent
+  }
+
+
+  #login #submit:active {
+    outline: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+  }
+}

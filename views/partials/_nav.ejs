@@ -4,23 +4,35 @@
 
 <nav class="nav-container">
   <header>
-    <div id="logo">
+    <div id="logo" href="/">
       <img class="logo-img" src="../docs/burger_logo.png" style="width:70px;height:70px">
-      <h1>Burgers-R-Us</h1>
+      <a href="/"><h1>Burgers-R-Us</h1></a>
     </div>
   </header>
 
-<div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">
-  <form id="login-visible" class="form-control login" action="/login" method="POST">
-    <input class="form-control login" name="email" type="email" placeholder="Email Address">
-    <input class="form-control login" name="password" type="password" placeholder="Password">
-    <button class="btn btn-primary" type="submit" name="submit" value="Login">Enter</button>
-  </form>
   <div class="list-action">
+    <div class="login-link">
+    <ul>
+      <li id="login">
+        <a id="login-trigger" href="#">Log in <span>▼</span></a>
+        <div id="login-content">
+          <form id="login-visible" class="form-control login" action="/login" method="POST">
+            <fieldset id="inputs">
+              <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+              <input class="form-control" name="password" type="password" placeholder="Password" required>
+            </fieldset>
+            <fieldset id="actions">
+              <input type="submit" id="submit" value="Log in">
+            </fieldset>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
     <div class="register-link" >
       <a href="/register">Register</a>
     </div>
-    <div class="login-hidden" onclick="loginVisible()">Login</div>
+    <!-- <div class="login-hidden" onclick="loginVisible()">Login</div> -->
     <div class="checkout-link" href="/checkout">
       <a href="/checkout">Checkout</a>
     </div><i class="fas fa-shopping-cart"></i>
@@ -29,9 +41,15 @@
 
 <script>
 
-  const loginVisible = () => {
-    let form = document.getElementById("login-visible");
-    form.style.visibility = "visible";
-  }
+  $(document).ready(function(){
+    $('#login-trigger').click(function(){
+      $(this).next('#login-content').css('visibility', 'visible')
+      $(this).next('#login-content').slideToggle();
+      $(this).toggleClass('active');
+
+      if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+        else $(this).find('span').html('&#x25BC;')
+      })
+  });
 
 </script>

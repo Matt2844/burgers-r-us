@@ -25,7 +25,7 @@ const pool = new Pool({
 });
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail, userlogin} = require('./database')
+const {getUserWithEmail } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -67,29 +67,34 @@ app.get('/register', (req, res) => {
   res.render("register");
 });
 
-////// WILL NEED TO add NAME AND PHONE NUMBER once forms have been updated in the REGISTER HTML
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
-  console.log(req.body.name, req.body.phone, req.body.email, req.body.password)
-  // console.log(getUserWithEmail(req.body.email))
-  const sqlQuery = ` SELECT *
-  FROM users
-  WHERE email = $1 AND WHERE password = $2
-  ; `;
-    let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
-    let sqlQuery1 = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-    res.redirect('/')
-    return pool.query(sqlQuery, values).then((res) => {
-      console.log(res.rows)
-      pool.query(sqlQuery1, values).then((res) => res.rows[0]);
-    })
-  // }
-
-});
+  getUserWithEmail(req.body.email).then((response) => {
+    console.log("THIS-IS-WHAT-WE-WANT:",response)
+    if(!response) {
+      let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
+      let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
+      res.redirect('/')
+      return pool.query(sqlQuery, values).then((result) => result.rows[0]);
+    } else {
+      res.render("registerFailed")
+    }
+  })
+})
 
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
-  return userlogin.then((res) => console.log("THIS IS THE OUTPOUT:", res.rows[0]))
+  getUserWithEmail(req.body.email).then((response) => {
+    console.log(response.email, response.password)
+    if(response === null) {
+      console.log("response is supposed to be empty here", response)
+      res.send("You don't have an account, you need to register")
+    } else if (response.password !== req.body.password) {
+      res.send("Invalid Login Credentials, please check your information and try again")
+    } else if (response.password === req.body.password) {
+      res.send(`Welcome back ${response.name}! What can we get you today?`)
+    }
+  })
 })
 
 app.get('/checkout', (req, res) => {
