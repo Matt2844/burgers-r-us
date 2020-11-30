@@ -1,3 +1,7 @@
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
 * {
   box-sizing: border-box;
 }
@@ -7,7 +11,7 @@ body {
   width: 100%;
   height: 100%;
   margin-top: 77px;
-  font-family: 'Roboto', sans-serif;
+  font-family: $text;
 }
 
 .bkg-image {
@@ -17,11 +21,11 @@ body {
   height: 350px;
 
     .page-title{
-      color: darkgoldenrod;
+      color: $primary-color;
       background-color: white;
       margin: 15%;
       font-size: 300%;
-      border: 1px solid darkgoldenrod;
+      border: 1px solid $primary-color;
       display: flex;
       align-items: center;
 
@@ -31,19 +35,20 @@ body {
 #shopping-cart {
   display: flex;
   flex-direction: column;
-  border: 3px solid darkgoldenrod;
+  border: 3px solid $primary-color;
   margin: 8%;
 
   .title {
-    color: darkgoldenrod;
+    color: $primary-color;
     display: flex;
     justify-content: center;
     font-size: 400%;
     border: 1px solid cornsilk;
-    font-family: none;
+    font-family: $text;
+    font-weight: 800;
     margin: 50px 0px 0px 0px;
     padding-bottom:50px;
-    border-bottom: 1px solid darkgoldenrod
+    border-bottom: 1px solid $primary-color
 
   }
 }
@@ -55,7 +60,7 @@ body {
 #order-item {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid darkgoldenrod;
+  border-bottom: 1px solid $primary-color;
 
   .remove-item {
     margin:30px;
@@ -67,15 +72,13 @@ body {
     button:hover,
     button:focus {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-
     transform: scale(1.3);
-
     outline: none;
-}
   }
   .item-image {
     border-radius: 50%;
   }
+}
 
 
   .item-details {
@@ -86,7 +89,7 @@ body {
     .btn {
       background-color: transparent;
       border: 1px solid black;
-      font-family: fantasy;
+      font-family: $title-text;
       font-size: 28px;
     }
 
@@ -107,6 +110,7 @@ body {
         background-color: transparent;
         font-size: 24px;
         font-weight: bold;
+        font-family: $text;
       }
       .plus-btn {
         width: 40px;
@@ -131,7 +135,7 @@ body {
         margin: 30px;
         font-size: 24px;
         font-weight: bold;
-        font-family: fantasy;
+        font-family: $text;
 
         // .price {
         //   overflow: hidden;
@@ -157,7 +161,8 @@ body {
   height: 76px;
   font-size: 20px;
   padding: 10px;
-  background: goldenrod;
+  background: $primary-color;
+  font-family: $text;
   border: 1px solid black;
   text-align: center;
   width: 60%;
@@ -171,14 +176,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  border-top: 6px double darkgoldenrod;
+  border-top: 6px double $primary-color;
 
   .total {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     font-size: 20px;
-    font-family: fantasy;
+    font-family: $text;
     margin: 0px 30px 0px 0px;
 
 
@@ -192,6 +197,7 @@ body {
     .total-value {
       align-items: baseline;
       margin:20px;
+      font-family: $title-text;
     }
   }
 }
@@ -201,7 +207,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 80px;
-    border: 2px solid darkgoldenrod;
+    border: 2px solid $primary-color;
 
 
 
@@ -212,7 +218,7 @@ body {
       background-color: cornsilk;
 
       font-size: 24px;
-      font-family: inherit;
+      font-family: $title-text;
 
       border: 1px solid rgba(#ffb3c9, 0.3);
       box-shadow: 0 2px 2px rgba(#ffb3c9, 0.1);

@@ -1,5 +1,10 @@
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
+
 body {
-	background-color: lemonchiffon;
+  background-color: lemonchiffon;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
 }
 
@@ -36,23 +41,23 @@ body {
 #menu {
 	display: flex;
   flex-direction: column;
-  border: 3px solid darkgoldenrod;
+  border: 3px solid $primary-color;
   margin: 8%;
 }
 
 #appetizer-menu {
 	display: flex;
   flex-direction: column;
-  border: 3px solid darkgoldenrod;
+  border: 3px solid $primary-color;
 	.item {
     display: flex;
     padding:10px;
 	}
 	h2 {
-    border-bottom: 1px solid darkgoldenrod;
+    border-bottom: 1px solid $primary-color;
 		font-family: sans-serif;
 		font-weight: bold;
-		color: darkgoldenrod;
+		color: $primary-color;
 		font-size: 36px;;
 		display: flex;
     justify-content: center;
@@ -77,7 +82,7 @@ body {
 		align-items: baseline;
 	}
 	.item-title {
-		font-family: fantasy;
+		font-family: 'Lobster', cursive;
     font-size: 28px;
     font-weight: 600;
 		margin: 20px 20px 20px 20px;
@@ -94,25 +99,25 @@ body {
     margin: 0% 5% 0% 5%;
   }
 	.item-description {
-		font-family: fantasy;
+		font-family: 'Montserrat', sans-serif;
 		font-size: large;
 		margin: 0px 20px 0px 20px;
 	}
 	.add-cart {
 		display: inline-block;
 		padding: 0.35em 1.2em;
-    border: 0.1em solid darkgoldenrod;
+    border: 0.1em solid $primary-color;
     background-color: transparent;
 		margin: 20px 500px 20px 10px;
 		box-sizing: border-box;
 		font-family: 'Roboto',sans-serif;
 		font-weight: 300;
-		color: darkgoldenrod;
+		color: $primary-color;
 		text-align: center;
 		transition: all 0.2s;
 		&:hover {
 			color: #000000;
-      background-color: darkgoldenrod;
+      background-color: $primary-color;
       transform: scale(1.2);
 		}
 	}

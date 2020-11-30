@@ -1,4 +1,8 @@
 // See: https://sass-lang.com/
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
 
 body {
   background-color: #EEE;
@@ -32,7 +36,7 @@ body {
     text-align: center;
     color: black;
     margin: 30px 0px 30px 10px;
-    font-family: none;
+    font-family: $title-text;
   }
 
   #login-visible {
@@ -64,7 +68,7 @@ body {
     display: flex;
     align-items: center;
     margin: 20px;
-    font-family: fantasy;
+    font-family: $text;
     font-size: 20px;
     color: #000000;
     text-decoration: none;
