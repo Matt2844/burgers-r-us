@@ -67,7 +67,9 @@ body {
     button:hover,
     button:focus {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-    transform: scale(1.2);
+
+    transform: scale(1.3);
+
     outline: none;
 }
   }
@@ -164,4 +166,65 @@ body {
   border-radius: 10px;
 }
 
+
+#confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-top: 6px double darkgoldenrod;
+
+  .total {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 20px;
+    font-family: fantasy;
+    margin: 0px 30px 0px 0px;
+
+
+
+    .total-item {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+    }
+
+    .total-value {
+      align-items: baseline;
+      margin:20px;
+    }
+  }
+}
+
+  .confirm-order {
+    margin:20px;
+    display: flex;
+    flex-direction: column;
+    margin: 80px;
+    border: 2px solid darkgoldenrod;
+
+
+
+    .order-button {
+      width: 100%;
+      height: 50px;
+      box-sizing: border-box;
+      background-color: cornsilk;
+
+      font-size: 24px;
+      font-family: inherit;
+
+      border: 1px solid rgba(#ffb3c9, 0.3);
+      box-shadow: 0 2px 2px rgba(#ffb3c9, 0.1);
+      border-radius: 4px;
+
+      transition: background 0.1s, color 0.1s, border-color 0.1s;
+
+      &:hover {
+        background: darken(#ffb3c9 , 10%);
+        color: white;
+        border-color: transparent;
+      }
+    }
+  }
 
