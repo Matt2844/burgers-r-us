@@ -164,7 +164,9 @@ const productsObj = [
   }
 ]
 
-/// ONLY USED TO AVOID MANUALLY CREATING THE PRODUCTS ARRAY OF OBJECT
+
+
+/// ONLY USED TO AVOID MANUALLY CREATING THE PRODUCTS ARRAY OF OBJECTS
 const makeObject= function() {
   let arrayObj = []
   let sqlQuery = 'SELECT * FROM products;'
@@ -179,12 +181,32 @@ const makeObject= function() {
         category: row.category
       })
     }
-    console.log(arrayObj)
+    return arrayObj
   })
 
 }
 
-makeObject()
+const createProductHtml = function (obj) {
+  let productLine = `
+  <div class="item">
+  <div class="item-img">
+    <img class="product-img" src="${obj.picture}" style="width:150px;height:150px">
+  </div>
+  <div class="detail">
+    <div class="item-header">
+      <h3 class="item-title">${obj.name}</h3>
+      <span class="item-dot"></span>
+      <span class="item-price">${obj.price}</span>
+    </div>
+    <p class="item-description">${obj.description}</p>
+    <button class="add-cart">Add to cart</button>
+  </div>
+</div>`;
+
+  return productLine;
+};
+
+// makeObject()
 
 /**
  * Get a single user from the database given their email.
@@ -211,28 +233,8 @@ const getUserWithEmail = function (email) {
   });
 };
 
-// getUserWithEmail('Kiram@mail.com')
-
-const userLogin = function (email, password) {
-  const values = [email];
-
-  const sqlQuery = ` SELECT *
-  FROM users
-  WHERE email = $1 AND WHERE password = $2
-  ; `;
-
-  return pool.query(sqlQuery, values).then((res) => {
-    if (res.rows[0] === undefined) {
-      console.log(null)
-      return null;
-    }
-    console.log(res.rows[0])
-    return res.rows[0];
-  });
-};
-
 module.exports = {
   getUserWithEmail,
-  userLogin,
-  productsObj
+  makeObject,
+  createProductHtml
 }
