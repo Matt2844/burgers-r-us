@@ -54,11 +54,11 @@
           <button class="plus-btn" type="button" name="button">
             <i class="fas fa-plus"></i>
           </button>
-          <input class="number-item" type="text" name="number" value="1">
+          <input class="number-item" type="number" name="number" value="1">
           <button class="minus-btn" type="button" name="button">
             <i class="fas fa-minus"></i>
           </button>
-          <div class="cart-total-price">35.95$</div>
+          <span class="cart-total-price">35.95$</span>
             <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
           </div>
         </div>
@@ -80,11 +80,11 @@
           <button class="plus-btn" type="button" name="button">
             <i class="fas fa-plus"></i>
           </button>
-          <input class="number-item" type="text" name="number" value="1">
+          <input class="number-item" type="number" name="number" value="1">
           <button class="minus-btn" type="button" name="button">
             <i class="fas fa-minus"></i>
           </button>
-          <div class="cart-total-price">35.95$</div>
+          <span class="cart-total-price">35.95$</span>
         </div>
       </div>
     </div>
@@ -104,16 +104,34 @@
           <button class="plus-btn" type="button" name="button">
             <i class="fas fa-plus"></i>
           </button>
-          <input class="number-item" type="text" name="number" value="1">
+          <input class="number-item" type="number" name="number" value="1">
           <button class="minus-btn" type="button" name="button">
             <i class="fas fa-minus"></i>
           </button>
-          <div class="cart-total-price">35.95$</div>
+          <span class="cart-total-price">35.95$</span>
             <!-- <input class="price" type="text" name="price"> -->
           </div>
         </div>
       </div>
+      <section id="confirmation">
+        <div class="total">
+          <div class="total-item">Subtotal
+            <div class="total-value" id="cart-subtotal">71.97</div>
+          </div>
+          <div class="total-item">Tax (14.975%)
+            <div class="total-value" id="cart-tax">10.74</div>
+          </div>
+          <div class="total-item">Grand Total
+            <div class="total-value" id="cart-total">82.75</div>
+          </div>
+        </div>
+      </section>
     </div>
+    <section class="confirm-order">
+      <div>
+        <button class="order-button">Confirm Order</button>
+      </div>
+    </section>
   </div>
 </div>
 
