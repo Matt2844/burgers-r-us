@@ -43,6 +43,18 @@ body {
     display: flex;
     align-items: center;
     visibility: hidden;
+    .form-control {
+      background-color: transparent;
+      border: 2px solid $primary-color;
+      margin:10px;
+    }
+    button {
+      margin: 10px;
+      border: ridge;
+      background-color: transparent;
+      font-family: 'Montserrat';
+      font-weight: 400;
+    }
   }
 
   .login-hidden {
