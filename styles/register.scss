@@ -1,50 +1,56 @@
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
+
 *{
   box-sizing: border-box;
 }
 
 body {
-  margin-top: 160px;
-  background-color: lemonchiffon;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  width: 100%;
+	margin-top: 160px;
+	background-color: lemonchiffon;
+	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+	width: 100%;
 }
-
 h2 {
-  text-align: center;
-  font-family: Helvetica, sans-serif;
+  margin-top: 180px;
+	text-align: center;
+	font-family: $title-text;
 }
-
 .register-inputs {
-  border: 1px solid black;
-  width: 15em;
-  height: 20em;
-  margin-top: 10%;
-  margin-right: auto;
-  margin-left: auto;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  box-shadow: 1px 1px 5px black;
+	border: 1px solid black;
+	width: 15em;
+	height: 20em;
+	margin-top: 10%;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
+	box-shadow: 1px 1px 5px black;
 }
+section {
+	input {
+		margin: 1em;
+		padding: 0.6em;
+	}
+	button {
+		width: 5em;
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 2em;
+		padding: 0.3em;
+		background-color: rgb(0, 0, 0);
+    color: white;
 
-section input {
-  margin: 1em;
-  padding: 0.6em;
-}
-section button {
-  width: 5em;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 2em;
-  padding: 0.3em;
-  background-color: rgb(0, 0, 0);
-  color: white;
-  cursor: pointer;
-  &:hover {
-    color: black;
-    background-color: white;
-    box-shadow: 2px 2px 1px black;
-    transition: 0.4s;
+		cursor: pointer;
+		& hover { color: black;
+		background-color: white;
+		box-shadow: 2px 2px 1px black;
+		transition: 0.4s;
+    }
   }
 }
+
