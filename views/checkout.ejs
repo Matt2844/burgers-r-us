@@ -4,8 +4,10 @@
 <head>
   <title>Home Page</title>
 
-  <!-- Bootstrap and jQuery -->
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
@@ -20,9 +22,12 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
   <!-- External CSS -->
   <link href="Bttn.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,200;0,400;0,700;1,800&display=swap">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,200;0,400;0,700;1,800&display=swap">
 </head>
 
 <body>
@@ -30,37 +35,36 @@
     <%- include('partials/_nav')%>
   </header>
 
-  <div class="bkg-image"
-  style="background-image : url('./docs/burgers_fun.png') ">
-  <h1 class="page-title">CONFIRM YOUR ORDER</h1>
-</div>
-<div id="shopping-cart">
-  <div class="title">YOUR CART</div>
+  <div class="bkg-image" style="background-image : url('./docs/burgers_fun.png') ">
+    <h1 class="page-title">CONFIRM YOUR ORDER</h1>
+  </div>
+  <div id="shopping-cart">
+    <div class="title">YOUR CART</div>
 
-  <!-- Products -->
-  <div class="all-items">
-    <div id="order-item">
-      <div class="remove-item">
-        <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
-      </div>
-      <div class="item-img">
-        <img src="./docs/burger1.png" style="width:150px;height:150px">
-      </div>
-      <div class="item-details">
-        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
+    <!-- Products -->
+    <div class="all-items">
+      <div id="order-item">
+        <div class="remove-item">
+          <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
+        </div>
+        <div class="item-img">
+          <img src="./docs/burger1.png" style="width:150px;height:150px">
+        </div>
+        <div class="item-details">
+          <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
         Jack. Also served without mushrooms for people with working taste buds">
-          Burger Cowboy
-        </button>
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <i class="fas fa-plus"></i>
+            Burger Cowboy
           </button>
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button">
+              <i class="fas fa-plus"></i>
+            </button>
 
-          <input class="number-item" type="number" name="number" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <i class="fas fa-minus"></i>
-          </button>
-          <span class="cart-total-price">35.95$</span>
+            <input class="number-item" type="number" name="number" value="1">
+            <button class="minus-btn" type="button" name="button">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span class="cart-total-price">35.95$</span>
 
 
             <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
@@ -117,39 +121,39 @@
           </button>
           <span class="cart-total-price">35.95$</span>
 
-            <!-- <input class="price" type="text" name="price"> -->
-          </div>
+          <!-- <input class="price" type="text" name="price"> -->
         </div>
       </div>
-      <section id="confirmation">
-        <div class="total">
-          <div class="total-item">Subtotal
-            <div class="total-value" id="cart-subtotal">71.97</div>
-          </div>
-          <div class="total-item">Tax (14.975%)
-            <div class="total-value" id="cart-tax">10.74</div>
-          </div>
-          <div class="total-item">Grand Total
-            <div class="total-value" id="cart-total">82.75</div>
-          </div>
-        </div>
-      </section>
     </div>
-
-    <section class="confirm-order">
-      <div>
-        <button class="order-button">Confirm Order</button>
+    <section id="confirmation">
+      <div class="total">
+        <div class="total-item">Subtotal
+          <div class="total-value" id="cart-subtotal">71.97</div>
+        </div>
+        <div class="total-item">Tax (14.975%)
+          <div class="total-value" id="cart-tax">10.74</div>
+        </div>
+        <div class="total-item">Grand Total
+          <div class="total-value" id="cart-total">82.75</div>
+        </div>
       </div>
     </section>
+  </div>
+
+  <section class="confirm-order">
+    <div>
+      <button class="order-button">Confirm Order</button>
+    </div>
+  </section>
 
   </div>
-</div>
+  </div>
 
 </body>
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 </script>
 
 </html>
