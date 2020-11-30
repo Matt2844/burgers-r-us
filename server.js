@@ -25,7 +25,7 @@ const pool = new Pool({
 });
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const getUserWithEmail = require('./database')
+const {getUserWithEmail, userlogin} = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -71,20 +71,25 @@ app.get('/register', (req, res) => {
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   console.log(req.body.name, req.body.phone, req.body.email, req.body.password)
-  // if (getUserWithEmail(req.body.email)) {
-  //   res.send("You're already registered, please log-in")
-    //would need to implement a delay and redirect but set timeout isn't working
-  // } else {
+  // console.log(getUserWithEmail(req.body.email))
+  const sqlQuery = ` SELECT *
+  FROM users
+  WHERE email = $1 AND WHERE password = $2
+  ; `;
     let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
-    let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
+    let sqlQuery1 = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
     res.redirect('/')
-    return pool.query(sqlQuery, values).then((res) => res.rows[0]);
+    return pool.query(sqlQuery, values).then((res) => {
+      console.log(res.rows)
+      pool.query(sqlQuery1, values).then((res) => res.rows[0]);
+    })
   // }
 
 });
 
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
+  return userlogin.then((res) => console.log("THIS IS THE OUTPOUT:", res.rows[0]))
 })
 
 app.get('/checkout', (req, res) => {
