@@ -179,12 +179,32 @@ const makeObject = function() {
         category: row.category
       })
     }
-    console.log(arrayObj)
+    return arrayObj
   })
 
 }
 
-makeObject()
+const createProductHtml = function(obj) {
+  let productLine = `
+  <div class="item">
+  <div class="item-img">
+    <img class="product-img" src="${obj.picture}" style="width:150px;height:150px">
+  </div>
+  <div class="detail">
+    <div class="item-header">
+      <h3 class="item-title">${obj.name}</h3>
+      <span class="item-dot"></span>
+      <span class="item-price">${obj.price}</span>
+    </div>
+    <p class="item-description">${obj.description}</p>
+    <button class="add-cart">Add to cart</button>
+  </div>
+</div>`;
+
+  return productLine;
+};
+
+// makeObject()
 
 /**
  * Get a single user from the database given their email.
@@ -233,6 +253,6 @@ const userLogin = function(email, password) {
 
 module.exports = {
   getUserWithEmail,
-  userLogin,
-  productsObj
+  makeObject,
+  createProductHtml
 }
