@@ -17,8 +17,12 @@
     crossorigin="anonymous"></script>
 
   <!-- Internal JS-->
+<<<<<<< HEAD
+  <script type="text/javascript" src="/scripts/register-client.js"></script>
+=======
   <script type="text/javascript" src="/client-register.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+>>>>>>> af7f2638614dd0822fd045d793dd65e59c71c4a4
 
   <!-- Internal CSS -->
   <link rel="stylesheet" href="/styles/layout.css">
@@ -50,25 +54,6 @@
       </div>
     </form>
   </section>
-
-  <script>
-
-    const formatTel = () => {
-      let phoneNum = document.getElementById("phone");
-
-      if (phoneNum.value.length < 10) {
-        alert("not enough chars")
-      } else if (phoneNum.value.length > 14) {
-        alert("too many chars");
-      } else if (phoneNum.value.length > 9 && phoneNum.value.length < 15) {
-        phoneNum.value = phoneNum.value.replace(/[^0-9]/g, '');
-        phoneNum.value = phoneNum.value.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
-
-
-      }
-    }
-
-  </script>
 
 
 </body>

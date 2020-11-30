@@ -1,55 +1,51 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,200;0,400;0,700;1,800&display=swap">
-
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/scripts/shoppingcart-client.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:ital,wght@0,200;0,400;0,700;1,800&display=swap">
+</head>
 <nav class="nav-container">
   <header>
     <div id="logo" href="/">
       <img class="logo-img" src="../docs/burger_logo.png" style="width:70px;height:70px">
-      <a href="/"><h1>Burgers-R-Us</h1></a>
+      <a href="/">
+        <h1>Burgers-R-Us</h1>
+      </a>
     </div>
   </header>
 
-  <div class="list-action">
-    <div class="login-link">
-    <ul>
-      <li id="login">
-        <a id="login-trigger" href="#">Log in <span>▼</span></a>
-        <div id="login-content">
-          <form id="login-visible" class="form-control login" action="/login" method="POST">
-            <fieldset id="inputs">
-              <input class="form-control" name="email" type="email" placeholder="Email Address" required>
-              <input class="form-control" name="password" type="password" placeholder="Password" required>
-            </fieldset>
-            <fieldset id="actions">
-              <input type="submit" id="submit" value="Log in">
-            </fieldset>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </div>
-    <div class="register-link" >
-      <a href="/register">Register</a>
+  <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">
+    <form id="login-visible" class="form-control login" action="/login" method="POST">
+      <input class="form-control login" name="email" type="email" placeholder="Email Address">
+      <input class="form-control login" name="password" type="password" placeholder="Password">
+      <button class="btn btn-primary" type="submit" name="submit" value="Login">Enter</button>
+    </form>
+    <div class="list-action">
+      <div class="register-link">
+        <a href="/register">Register</a>
+      </div>
+      <div class="login-hidden" onclick="loginVisible()">Login</div>
+      <div class="checkout-link" href="/checkout">
+        <a href="/checkout">Checkout</a>
+      </div><i class="fas fa-shopping-cart"></i><span id="cart-counter">0</span>
     </div>
-    <!-- <div class="login-hidden" onclick="loginVisible()">Login</div> -->
-    <div class="checkout-link" href="/checkout">
-      <a href="/checkout">Checkout</a>
-    </div><i class="fas fa-shopping-cart"></i>
-  </div>
 </nav>
 
 <script>
 
-  $(document).ready(function(){
-    $('#login-trigger').click(function(){
+  $(document).ready(function() {
+    $('#login-trigger').click(function() {
       $(this).next('#login-content').css('visibility', 'visible')
       $(this).next('#login-content').slideToggle();
       $(this).toggleClass('active');
 
       if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
-        else $(this).find('span').html('&#x25BC;')
-      })
+      else $(this).find('span').html('&#x25BC;')
+    })
   });
 
 </script>
