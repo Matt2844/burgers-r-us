@@ -68,24 +68,22 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
-// Home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
+
 app.get("/", (req, res) => {
   console.log(req.session.user_id);
   getUserWithId(req.session.user_id).then((response) => {
-    console.log("THIS IS IN THE GET / ROUTE", response);
     const templateVars = { user: response, ArrObj: productsObj };
     res.render("index", templateVars);
   });
 });
 
-//ROUTES BELOW PROBABLY NEED TO BE MOVED
-
 app.get("/register", (req, res) => {
   const templateVars = { user: null };
   res.render("register", templateVars);
 });
+
+
+//3 below routes render /RegisterFailed with a different message depending on the error
 
 app.get("/invalidLogin", (req, res) => {
   const templateVars = {
@@ -112,7 +110,9 @@ app.get("/registerFailed", (req, res) => {
   res.render("registerFailed", templateVars);
 });
 
-////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
+
+///////////--------------------------------------------END OF ERROR ROUTES
+
 app.post("/register", (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
     if (!response) {
