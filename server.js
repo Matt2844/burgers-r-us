@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+const bcrypt = require("bcrypt");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -103,13 +104,15 @@ app.get('/registerFailed', (req, res) => {
 
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
-  getUserWithEmail(req.body.email).then((response) => {
+  let inputEmail = req.body.email.toLowerCase()
+  getUserWithEmail(inputEmail).then((response) => {
     if(!response) {
-      let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
+      const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+      let values = [req.body.name, req.body.phone, inputEmail, hashedPassword] ///email enterred will be lower case when added
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
       return pool.query(sqlQuery, values).then((result) => {
-        res.redirect('/')
         req.session.user_id = result.rows[0].id;
+        res.redirect('/')
         return result.rows[0];
       })
     } else {
@@ -119,23 +122,22 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  console.log(req.body.email, req.body.password)
-  getUserWithEmail(req.body.email).then((response) => {
+  let inputEmail = req.body.email.toLowerCase()
+  getUserWithEmail(inputEmail).then((response) => {
     if(response === null) {
       res.redirect('/accountMissing')
-    } else if (response.password !== req.body.password) {
-      res.redirect('/invalidLogin')
-    } else if (response.password === req.body.password) {
+    } else if (bcrypt.compareSync(req.body.password, response.password)) {
       console.log("IF CHECK IN SHOULD WORK",response)
       req.session.user_id = response.id;
       res.redirect('/')
+    } else if (response.password !== req.body.password) {
+      res.redirect('/invalidLogin')
     }
   })
-})
+});
 
 app.get('/checkout', (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
-    console.log("THIS IS AT CHECKOUT", response)
     const templateVars = { user: response,
       ArrObj: productsObj}
     res.render("checkout", templateVars);
