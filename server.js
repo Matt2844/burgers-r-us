@@ -134,7 +134,7 @@ app.post("/register", (req, res) => {
   });
 });
 
-
+////////--------Log in/out ROUTES
 
 app.post("/login", (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
@@ -161,8 +161,11 @@ app.get("/checkout", (req, res) => {
   });
 });
 
-//ROUTES ABOVE PROBABLY NEED TO BE MOVED
 
+
+
+
+//////////server connection route -----
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
