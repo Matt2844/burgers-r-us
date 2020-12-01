@@ -233,13 +233,8 @@ const getUserWithEmail = function(email) {
 
 // getUserWithEmail('Kiram@mail.com')
 
-<<<<<<< HEAD
 const userLogin = function(email, password) {
   const values = [email];
-=======
-const getUserWithID = function (ID) {
-  const values = [ID];
->>>>>>> 15371dc0da9af6514a7993eed5ff3f9fe62f3e88
 
   const sqlQuery = ` SELECT *
   FROM users
@@ -247,18 +242,11 @@ const getUserWithID = function (ID) {
   ; `;
 
   return pool.query(sqlQuery, values).then((res) => {
-<<<<<<< HEAD
     if (res.rows[0] === undefined) {
       console.log(null)
       return null;
     }
     console.log(res.rows[0])
-=======
-    // console.log("Length VALUE", res.rows.length)
-    if (res.rows.length === 0) {
-      return null;
-    }
->>>>>>> 15371dc0da9af6514a7993eed5ff3f9fe62f3e88
     return res.rows[0];
   });
 };
