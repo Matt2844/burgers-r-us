@@ -78,10 +78,20 @@ app.post('/register', (req, res) => {
     if(!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
+<<<<<<< HEAD
       res.redirect('/')
       return pool.query(sqlQuery, values).then((result) => result.rows[0]);
+=======
+      return pool.query(sqlQuery, values).then((result) => {
+        console.log(result.rows[0]);
+        req.session.user_id = result.rows[0].id
+        result.rows[0]
+        res.redirect('/')
+      })
+>>>>>>> 15371dc0da9af6514a7993eed5ff3f9fe62f3e88
     } else {
-      res.render("registerFailed")
+      let templateVars = {user: null}
+      res.render("registerFailed", templateVars)
     }
   })
 })
@@ -103,11 +113,19 @@ app.post('/login', (req, res) => {
 
 app.get('/checkout', (req, res) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const templateVars = { user: null }
   res.render("checkout", templateVars);
 =======
   res.render("checkout");
 >>>>>>> parent of cafaa42... Fixes (#28)
+=======
+  getUserWithID(req.session.user_id).then((response) => {
+    console.log("this is the RESPONSE value from /:", response)
+    const templateVars = { user: response }
+    res.render("checkout", templateVars);
+  })
+>>>>>>> 15371dc0da9af6514a7993eed5ff3f9fe62f3e88
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED
