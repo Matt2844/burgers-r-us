@@ -240,7 +240,7 @@ const getUserWithId = (ID) => {
       console.log("IN length check=", res.rows[0])
       return null
     } else {
-      console.log("Final state=", res.rows[0])
+      console.log("Final state=", res.rows[0].name)
       return res.rows[0];
     }
   })
