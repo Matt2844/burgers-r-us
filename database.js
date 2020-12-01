@@ -24,7 +24,7 @@ const productsObj = [
   },
   {
     name: 'Chili Nachos',
-    picture: './docs/nachos_chili.jpg',
+    picture: './docs/nachos_chili.jpeg',
     description: 'Homemade beef chili, jalapeños, homemade cheese sauce, salsa.',
     price: 13.95,
     category: 'Appetizers'
@@ -38,14 +38,14 @@ const productsObj = [
   },
   {
     name: 'Fried Pickles',
-    picture: './docs/fried_pickles.jpg',
+    picture: './docs/fried_pickles.jpeg',
     description: 'Served with chipotle Sriracha dip',
     price: 7.95,
     category: 'Appetizers'
   },
   {
     name: 'Cheese Burger',
-    picture: './docs/burger2.jpg',
+    picture: './docs/burger2.png',
     description: 'Classic Cheese Burger served on homemade buns',
     price: 13.95,
     category: 'Burgers'
@@ -73,7 +73,7 @@ const productsObj = [
   },
   {
     name: 'Barnyard',
-    picture: './docs/Burger_Banyard',
+    picture: './docs/Burger-Barnyard.jpg',
     description: 'Smoky BBQ sauce, bacon, blue cheese, caramelized onions. This is what love taste like',
     price: 20.95,
     category: 'Burgers'
