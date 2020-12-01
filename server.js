@@ -9,6 +9,16 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+/// cookie sessions
+
+const cookieSession = require("cookie-session");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -25,7 +35,7 @@ const pool = new Pool({
 });
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail, userlogin} = require('./database')
+const {getUserWithEmail, getUserWithID } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -58,42 +68,67 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+    getUserWithID(req.session.user_id).then((response) => {
+      console.log("this is the RESPONSE value from /:", response)
+      const templateVars = { user: response }
+      res.render("index", templateVars);
+    })
 });
 
 //ROUTES BELOW PROBABLY NEED TO BE MOVED
 
 app.get('/register', (req, res) => {
-  res.render("register");
+  const templateVars = { user: null }
+  res.render("register", templateVars);
 });
 
-////// WILL NEED TO add NAME AND PHONE NUMBER once forms have been updated in the REGISTER HTML
+app.get('/registerFailed', (req,res) => {
+  res.render("registerFailed")
+})
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
-  console.log(req.body.name, req.body.phone, req.body.email, req.body.password)
-  // console.log(getUserWithEmail(req.body.email))
-  const sqlQuery = ` SELECT *
-  FROM users
-  WHERE email = $1 AND WHERE password = $2
-  ; `;
-    let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
-    let sqlQuery1 = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-    res.redirect('/')
-    return pool.query(sqlQuery, values).then((res) => {
-      console.log(res.rows)
-      pool.query(sqlQuery1, values).then((res) => res.rows[0]);
-    })
-  // }
-
-});
+  getUserWithEmail(req.body.email).then((response) => {
+    if(!response) {
+      let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
+      let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
+      return pool.query(sqlQuery, values).then((result) => {
+        console.log(result.rows[0]);
+        req.session.user_id = result.rows[0].id
+        result.rows[0]
+        res.redirect('/')
+      })
+    } else {
+      let templateVars = {user: null}
+      res.render("registerFailed", templateVars)
+    }
+  })
+})
 
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
-  return userlogin.then((res) => console.log("THIS IS THE OUTPOUT:", res.rows[0]))
+  getUserWithEmail(req.body.email).then((response) => {
+    if(!response) {
+      res.send("You don't have an account, you need to register")
+    } else if (response.password !== req.body.password) {
+      res.send("Invalid Login Credentials, please check your information and try again")
+    } else if (response.password === req.body.password) {
+      req.session.user_id = response.id
+      res.redirect('/');
+    }
+  })
 })
 
+app.post("/logout", (req, res) => {
+  res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
+  res.redirect("/");
+});
+
 app.get('/checkout', (req, res) => {
-  res.render("checkout");
+  getUserWithID(req.session.user_id).then((response) => {
+    console.log("this is the RESPONSE value from /:", response)
+    const templateVars = { user: response }
+    res.render("checkout", templateVars);
+  })
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED

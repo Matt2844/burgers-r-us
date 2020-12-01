@@ -165,12 +165,12 @@ const productsObj = [
 ]
 
 /// ONLY USED TO AVOID MANUALLY CREATING THE PRODUCTS ARRAY OF OBJECT
-const makeObject= function() {
+const makeObject = function() {
   let arrayObj = []
   let sqlQuery = 'SELECT * FROM products;'
 
   return pool.query(sqlQuery, []).then((res) => {
-    for(let row of res.rows) {
+    for (let row of res.rows) {
       arrayObj.push({
         name: row.name,
         picture: row.picture,
@@ -179,19 +179,39 @@ const makeObject= function() {
         category: row.category
       })
     }
-    console.log(arrayObj)
+    return arrayObj
   })
 
 }
 
-makeObject()
+const createProductHtml = function(obj) {
+  let productLine = `
+  <div class="item">
+  <div class="item-img">
+    <img class="product-img" src="${obj.picture}" style="width:150px;height:150px">
+  </div>
+  <div class="detail">
+    <div class="item-header">
+      <h3 class="item-title">${obj.name}</h3>
+      <span class="item-dot"></span>
+      <span class="item-price">${obj.price}</span>
+    </div>
+    <p class="item-description">${obj.description}</p>
+    <button class="add-cart">Add to cart</button>
+  </div>
+</div>`;
+
+  return productLine;
+};
+
+// makeObject()
 
 /**
  * Get a single user from the database given their email.
  * @param {String} email The email of the user.
  * @return {Promise<{}>} A promise to the user.
  */
-const getUserWithEmail = function (email) {
+const getUserWithEmail = function(email) {
   console.log("Email being received", email)
   const values = [email];
 
@@ -211,28 +231,27 @@ const getUserWithEmail = function (email) {
   });
 };
 
-// getUserWithEmail('Kiram@mail.com')
 
-const userLogin = function (email, password) {
-  const values = [email];
+const getUserWithID = function (ID) {
+  const values = [ID];
 
   const sqlQuery = ` SELECT *
   FROM users
-  WHERE email = $1 AND WHERE password = $2
+  WHERE id = $1
   ; `;
 
   return pool.query(sqlQuery, values).then((res) => {
-    if (res.rows[0] === undefined) {
-      console.log(null)
+    // console.log("Length VALUE", res.rows.length)
+    if (res.rows.length === 0) {
       return null;
     }
-    console.log(res.rows[0])
     return res.rows[0];
   });
 };
 
 module.exports = {
   getUserWithEmail,
-  userLogin,
-  productsObj
+  makeObject,
+  createProductHtml,
+  getUserWithID
 }
