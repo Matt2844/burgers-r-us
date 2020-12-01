@@ -77,12 +77,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/register", (req, res) => {
-  const templateVars = { user: null };
-  res.render("register", templateVars);
-});
-
-
 //3 below routes render /RegisterFailed with a different message depending on the error
 
 app.get("/invalidLogin", (req, res) => {
@@ -113,6 +107,12 @@ app.get("/registerFailed", (req, res) => {
 
 ///////////--------------------------------------------END OF ERROR ROUTES
 
+/// REGISTER ROUTES----------
+app.get("/register", (req, res) => {
+  const templateVars = { user: null };
+  res.render("register", templateVars);
+});
+
 app.post("/register", (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
     if (!response) {
@@ -134,6 +134,8 @@ app.post("/register", (req, res) => {
   });
 });
 
+
+
 app.post("/login", (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
     if (response === null) {
@@ -145,6 +147,11 @@ app.post("/login", (req, res) => {
       res.redirect("/");
     }
   });
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
+  res.redirect("/");
 });
 
 app.get("/checkout", (req, res) => {
