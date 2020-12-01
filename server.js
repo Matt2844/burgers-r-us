@@ -126,15 +126,15 @@ app.post('/login', (req, res) => {
   getUserWithEmail(inputEmail).then((response) => {
     if(response === null) {
       res.redirect('/accountMissing')
-    } else if (response.password !== req.body.password) {
-      res.redirect('/invalidLogin')
-    } else if (bcrypt.compareSync(response.password, req.body.password)) {
+    } else if (bcrypt.compareSync(req.body.password, response.password)) {
       console.log("IF CHECK IN SHOULD WORK",response)
       req.session.user_id = response.id;
       res.redirect('/')
+    } else if (response.password !== req.body.password) {
+      res.redirect('/invalidLogin')
     }
   })
-})
+});
 
 app.get('/checkout', (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
