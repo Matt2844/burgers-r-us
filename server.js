@@ -93,7 +93,7 @@ app.post('/register', (req, res) => {
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
       return pool.query(sqlQuery, values).then((result) => {
         console.log(result.rows[0]);
-        req.session.user_id = result.rows[0]
+        req.session.user_id = result.rows[0].id
         result.rows[0]
         res.redirect('/')
       })

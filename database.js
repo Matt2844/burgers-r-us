@@ -233,7 +233,6 @@ const getUserWithEmail = function(email) {
 
 
 const getUserWithID = function (ID) {
-  console.log("ID being received", ID)
   const values = [ID];
 
   const sqlQuery = ` SELECT *
@@ -244,10 +243,8 @@ const getUserWithID = function (ID) {
   return pool.query(sqlQuery, values).then((res) => {
     // console.log("Length VALUE", res.rows.length)
     if (res.rows.length === 0) {
-      // console.log(null)
       return null;
     }
-    // console.log(res.rows[0])
     return res.rows[0];
   });
 };
