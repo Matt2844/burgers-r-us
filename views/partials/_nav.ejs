@@ -16,23 +16,39 @@
         <h1>Burgers-R-Us</h1>
       </a>
     </div>
+    <% if(user){%>
+      <p>Hey <%=user.name%>! What can we get you today?</p>
+      <% }%>
   </header>
-
-  <div class="dropdown-menu" style="padding: 15px; padding-bottom: 10px;">
-    <form id="login-visible" class="form-control login" action="/login" method="POST">
-      <input class="form-control login" name="email" type="email" placeholder="Email Address">
-      <input class="form-control login" name="password" type="password" placeholder="Password">
-      <button class="btn btn-primary" type="submit" name="submit" value="Login">Enter</button>
-    </form>
-    <div class="list-action">
-      <div class="register-link">
-        <a href="/register">Register</a>
-      </div>
-      <div class="login-hidden" onclick="loginVisible()">Login</div>
-      <div class="checkout-link" href="/checkout">
-        <a href="/checkout">Checkout</a>
-      </div><i class="fas fa-shopping-cart"></i><span id="cart-counter">0</span>
+  <% if(!user){%>
+  <div class="list-action">
+    <div class="login-link">
+    <ul>
+      <li id="login">
+        <a id="login-trigger" href="#">Log in <span>▼</span></a>
+        <div id="login-content">
+          <form id="login-visible" class="form-control login" action="/login" method="POST">
+            <fieldset id="inputs">
+              <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+              <input class="form-control" name="password" type="password" placeholder="Password" required>
+            </fieldset>
+            <fieldset id="actions">
+              <input type="submit" id="submit" value="Log in">
+            </fieldset>
+          </form>
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div class="register-link" >
+      <a href="/register">Register</a>
     </div>
+    <% }%>
+    <!-- <div class="login-hidden" onclick="loginVisible()">Login</div> -->
+    <div class="checkout-link" href="/checkout">
+      <a href="/checkout">Checkout</a>
+    </div><i class="fas fa-shopping-cart"></i>
+  </div>
 </nav>
 
 <script>

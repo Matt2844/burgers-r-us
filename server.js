@@ -9,6 +9,16 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+/// cookie sessions
+
+const cookieSession = require("cookie-session");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -25,7 +35,7 @@ const pool = new Pool({
 });
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail } = require('./database')
+const {getUserWithEmail, getUserWithID } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -58,7 +68,11 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+    getUserWithID(req.session.user_id).then((response) => {
+      console.log("this is the RESPONSE value from /:", response)
+      const templateVars = { user: response }
+      res.render("index", templateVars);
+    })
 });
 
 //ROUTES BELOW PROBABLY NEED TO BE MOVED
@@ -73,12 +87,15 @@ app.get('/registerFailed', (req,res) => {
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
-    console.log("THIS-IS-WHAT-WE-WANT:",response)
     if(!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-      res.redirect('/')
-      return pool.query(sqlQuery, values).then((result) => result.rows[0]);
+      return pool.query(sqlQuery, values).then((result) => {
+        console.log(result.rows[0]);
+        req.session.user_id = result.rows[0]
+        result.rows[0]
+        res.redirect('/')
+      })
     } else {
       res.render("registerFailed")
     }
@@ -88,20 +105,27 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
   getUserWithEmail(req.body.email).then((response) => {
-    console.log(response.email, response.password)
-    if(response === null) {
-      console.log("response is supposed to be empty here", response)
+    if(!response) {
       res.send("You don't have an account, you need to register")
     } else if (response.password !== req.body.password) {
       res.send("Invalid Login Credentials, please check your information and try again")
     } else if (response.password === req.body.password) {
-      res.send(`Welcome back ${response.name}! What can we get you today?`)
+      req.session.user_id = response.id
+      res.redirect('/');
     }
   })
 })
 
+app.post("/logout", (req, res) => {
+  res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
+  res.redirect("/");
+});
+
 app.get('/checkout', (req, res) => {
-  res.render("checkout");
+  getUserWithID(req.session.user_id).then((response) => {
+    const templateVars = { user: response }
+    res.render("checkout", templateVars);
+  })
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED

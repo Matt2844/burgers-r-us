@@ -231,22 +231,23 @@ const getUserWithEmail = function(email) {
   });
 };
 
-// getUserWithEmail('Kiram@mail.com')
 
-const userLogin = function(email, password) {
-  const values = [email];
+const getUserWithID = function (ID) {
+  console.log("ID being received", ID)
+  const values = [ID];
 
   const sqlQuery = ` SELECT *
   FROM users
-  WHERE email = $1 AND WHERE password = $2
+  WHERE id = $1
   ; `;
 
   return pool.query(sqlQuery, values).then((res) => {
-    if (res.rows[0] === undefined) {
-      console.log(null)
+    // console.log("Length VALUE", res.rows.length)
+    if (res.rows.length === 0) {
+      // console.log(null)
       return null;
     }
-    console.log(res.rows[0])
+    // console.log(res.rows[0])
     return res.rows[0];
   });
 };
@@ -254,5 +255,6 @@ const userLogin = function(email, password) {
 module.exports = {
   getUserWithEmail,
   makeObject,
-  createProductHtml
+  createProductHtml,
+  getUserWithID
 }
