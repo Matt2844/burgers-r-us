@@ -24,6 +24,17 @@ const pool = new Pool({
   database: "midterm",
 });
 
+////////COOKIE SESSIONS
+
+const cookieSession = require("cookie-session");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
+
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
 const {getUserWithEmail, getUserWithId, productsObj } = require('./database')
 
@@ -71,20 +82,23 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/registerFailed', (req,res) => {
-  res.render("registerFailed")
+  let templateVars = {user: null}
+  res.render("registerFailed", templateVars)
 })
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
-    console.log("THIS-IS-WHAT-WE-WANT:",response)
     if(!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-      res.redirect('/')
-      return pool.query(sqlQuery, values).then((result) => result.rows[0]);
+      return pool.query(sqlQuery, values).then((result) => {
+        res.redirect('/')
+        req.session.user_id = result.rows[0].id;
+        return result.rows[0];
+      })
     } else {
       let templateVars = {user: null}
-      res.render("registerFailed", templateVars)
+      res.redirect('/registerFailed')
     }
   })
 })
@@ -105,18 +119,11 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/checkout', (req, res) => {
-
-  const templateVars = { user: null }
-  res.render("checkout", templateVars);
-
-  res.render("checkout");
-
-  getUserWithID(req.session.user_id).then((response) => {
-    console.log("this is the RESPONSE value from /:", response)
-    const templateVars = { user: response }
+  getUserWithId(req.session.user_id).then((response) => {
+    const templateVars = { user: response,
+      ArrObj: productsObj}
     res.render("checkout", templateVars);
   })
-
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED

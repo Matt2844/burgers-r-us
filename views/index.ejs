@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
   <!-- Internal JS -->
+  <script type="text/javascript" src="/scripts/database.js"></script>
+  <script type="text/javascript" src="/scripts/server.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/shoppingcart-client.js"></script>
   <!-- External CSS -->
@@ -44,57 +46,57 @@
         <h2>APPETIZERS</h2>
         <div class="item">
           <div class="item-img">
-            <img class="product-img" src="<%= productsObj[0].picture %>" style="width:150px;height:150px">
+            <img class="product-img" src="<%= ArrObj[0].picture %>" style="width:150px;height:150px">
           </div>
           <div class="detail">
             <div class="item-header">
-              <h3 class="item-title"><%= productsObj[0].name %></h3>
+              <h3 class="item-title"><%= ArrObj[0].name %></h3>
               <span class="item-dot"></span>
-              <span class="item-price"><%= productsObj[0].price %></span>
+              <span class="item-price"><%= ArrObj[0].price %></span>
             </div>
-            <p class="item-description"><%= productsObj[0].description %></p>
+            <p class="item-description"><%= ArrObj[0].description %></p>
             <button class="add-cart">Add to cart</button>
           </div>
         </div>
         <div class="item">
           <div class="item-img">
-            <img class="product-img" src="./docs/nachos_chili.jpeg" style="width:140px;height:150px">
+            <img class="product-img" src="<%= ArrObj[1].picture %>" style="width:150px;height:150px">
           </div>
           <div class="detail">
             <div class="item-header">
-              <h3 class="item-title">Chili nachos</h3>
+              <h3 class="item-title"><%= ArrObj[1].name %></h3>
               <span class="item-dot"></span>
-              <span class="item-price">13.95$</span>
+              <span class="item-price"><%= ArrObj[1].price %></span>
             </div>
-            <p class="item-description">Homemade beef chili, jalapeños, homemade cheese sauce, salsa</p>
+            <p class="item-description"><%= ArrObj[1].description %></p>
             <button class="add-cart">Add to cart</button>
           </div>
         </div>
         <div class="item">
           <div class="item-img">
-            <img class="product-img" src="./docs/cheese_stick.jpg" style="width:150px;height:130px">
+            <img class="product-img" src="<%= ArrObj[2].picture %>" style="width:150px;height:150px">
           </div>
           <div class="detail">
             <div class="item-header">
-              <h3 class="item-title">Cheese Sticks</h3>
+              <h3 class="item-title"><%= ArrObj[2].name %></h3>
               <span class="item-dot"></span>
-              <span class="item-price">9.95$</span>
+              <span class="item-price"><%= ArrObj[2].price %></span>
             </div>
-            <p class="item-description">Mozzarella cheese sticks. Served with marinara sauce</p>
+            <p class="item-description"><%= ArrObj[2].description %></p>
             <button class="add-cart">Add to cart</button>
           </div>
         </div>
         <div class="item">
           <div class="item-img">
-            <img class="product-img" src="./docs/fried_pickles.jpeg" style="width:150px;height:130px">
+            <img class="product-img" src="<%= ArrObj[3].picture %>" style="width:150px;height:150px">
           </div>
           <div class="detail">
             <div class="item-header">
-              <h3 class="item-title">Fried Pickles</h3>
+              <h3 class="item-title"><%= ArrObj[3].name %></h3>
               <span class="item-dot"></span>
-              <span class="item-price">7.95$</span>
+              <span class="item-price"><%= ArrObj[3].price %></span>
             </div>
-            <p class="item-description">Served with chipotle Sriracha dip</p>
+            <p class="item-description"><%= ArrObj[3].description %></p>
             <button class="add-cart">Add to cart</button>
           </div>
         </div>
@@ -103,94 +105,193 @@
           <h2>BURGERS</h2>
           <div class="item">
             <div class="item-img">
-              <div class="product-img"></div><img src="./docs/burger1.png" style="width:70px;height:70px">
+              <img class="product-img" src="<%= ArrObj[4].picture %>" style="width:150px;height:150px">
             </div>
             <div class="detail">
               <div class="item-header">
-                <h3 class="item-title">Cowboy</h3>
+                <h3 class="item-title"><%= ArrObj[4].name %></h3>
                 <span class="item-dot"></span>
-                <span class="item-price">20.95$</span>
+                <span class="item-price"><%= ArrObj[4].price %></span>
               </div>
-              <p class="item-description">Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
-                Jack. Also served without mushrooms for people with working taste buds</p>
+              <p class="item-description"><%= ArrObj[4].description %></p>
               <button class="add-cart">Add to cart</button>
             </div>
           </div>
           <div class="item">
             <div class="item-img">
-              <img class="product-img" src="./docs/burger1.png" style="width:70px;height:70px">
+              <img class="product-img" src="<%= ArrObj[5].picture %>" style="width:150px;height:150px">
             </div>
             <div class="detail">
               <div class="item-header">
-                <h3 class="item-title">Burger Tower</h3>
+                <h3 class="item-title"><%= ArrObj[5].name %></h3>
                 <span class="item-dot"></span>
-                <span class="item-price">32.95$$</span>
+                <span class="item-price"><%= ArrObj[5].price %></span>
               </div>
-              <p class="item-description">6 quarter-pound beef patties, bacon, 3 slices of Monterey Jack & cheddar
-                because screw that diet!</p>
+              <p class="item-description"><%= ArrObj[5].description %></p>
               <button class="add-cart">Add to cart</button>
             </div>
           </div>
           <div class="item">
             <div class="item-img">
-              <img class="product-img" src="./docs/burger1.png" style="width:70px;height:70px">
+              <img class="product-img" src="<%= ArrObj[6].picture %>" style="width:150px;height:150px">
             </div>
             <div class="detail">
               <div class="item-header">
-                <h3 class="item-title">Burger 3</h3>
+                <h3 class="item-title"><%= ArrObj[6].name %></h3>
                 <span class="item-dot"></span>
-                <span class="item-price">12$</span>
+                <span class="item-price"><%= ArrObj[6].price %></span>
               </div>
-              <p class="item-description">ingredients burger 3</p>
+              <p class="item-description"><%= ArrObj[6].description %></p>
               <button class="add-cart">Add to cart</button>
             </div>
           </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[7].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[7].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[7].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[7].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[8].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[8].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[8].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[8].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[9].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[9].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[9].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[9].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[10].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[10].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[10].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[10].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[11].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[11].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[11].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[11].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-img">
+              <img class="product-img" src="<%= ArrObj[12].picture %>" style="width:150px;height:150px">
+            </div>
+            <div class="detail">
+              <div class="item-header">
+                <h3 class="item-title"><%= ArrObj[12].name %></h3>
+                <span class="item-dot"></span>
+                <span class="item-price"><%= ArrObj[12].price %></span>
+              </div>
+              <p class="item-description"><%= ArrObj[12].description %></p>
+              <button class="add-cart">Add to cart</button>
+            </div>
+          </div>
+
 
           <!-- Start Poutine menu -->
           <div class="menu" id="poutine-menu">
             <h2>POUTINE</h2>
             <div class="item">
               <div class="item-img">
-                <img class="product-img" src="./docs/poutine1.png">
+                <img class="product-img" src="<%= ArrObj[14].picture %>" style="width:150px;height:150px">
               </div>
               <div class="detail">
                 <div class="item-header">
-                  <h3 class="item-title">poutine 1</h3>
+                  <h3 class="item-title"><%= ArrObj[14].name %></h3>
                   <span class="item-dot"></span>
-                  <span class="item-price">12$</span>
+                  <span class="item-price"><%= ArrObj[14].price %></span>
                 </div>
-                <p class="item-description">ingredient poutine 1</p>
+                <p class="item-description"><%= ArrObj[14].description %></p>
                 <button class="add-cart">Add to cart</button>
               </div>
             </div>
             <div class="item">
               <div class="item-img">
-                <img class="product-img" src="./docs/poutine2.png">
+                <img class="product-img" src="<%= ArrObj[15].picture %>" style="width:150px;height:150px">
               </div>
               <div class="detail">
                 <div class="item-header">
-                  <h3 class="item-title">Poutine 2</h3>
+                  <h3 class="item-title"><%= ArrObj[15].name %></h3>
                   <span class="item-dot"></span>
-                  <span class="item-price">12$</span>
+                  <span class="item-price"><%= ArrObj[15].price %></span>
                 </div>
-                <p class="item-description">ingredient poutine 2</p>
+                <p class="item-description"><%= ArrObj[15].description %></p>
                 <button class="add-cart">Add to cart</button>
               </div>
             </div>
-            <div class="item">
-              <div class="item-img">
-                <img class="product-img" src="./docs/poutine3.png">
-              </div>
-              <div class="detail">
-                <div class="item-header">
-                  <h3 class="item-title">Poutine 3</h3>
-                  <span class="item-dot"></span>
-                  <span class="item-price">12$</span>
+            <div class="menu" id="others-menu">
+              <h2>OTHERS</h2>
+              <div class="item">
+                <div class="item-img">
+                  <img class="product-img" src="<%= ArrObj[13].picture %>" style="width:150px;height:150px">
                 </div>
-                <p class="item-description">ingredients burger 3</p>
-                <button class="add-cart">Add to cart</button>
+                <div class="detail">
+                  <div class="item-header">
+                    <h3 class="item-title"><%= ArrObj[13].name %></h3>
+                    <span class="item-dot"></span>
+                    <span class="item-price"><%= ArrObj[13].price %></span>
+                  </div>
+                  <p class="item-description"><%= ArrObj[13].description %></p>
+                  <button class="add-cart">Add to cart</button>
+                </div>
               </div>
-            </div>
+              <div class="item">
+                <div class="item-img">
+                  <img class="product-img" src="<%= ArrObj[17].picture %>" style="width:150px;height:150px">
+                </div>
+                <div class="detail">
+                  <div class="item-header">
+                    <h3 class="item-title"><%= ArrObj[17].name %></h3>
+                    <span class="item-dot"></span>
+                    <span class="item-price"><%= ArrObj[17].price %></span>
+                  </div>
+                  <p class="item-description"><%= ArrObj[17].description %></p>
+                  <button class="add-cart">Add to cart</button>
+                </div>
+              </div>
           </div>
     </section>
   </div>
