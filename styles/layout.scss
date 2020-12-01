@@ -8,6 +8,7 @@ body {
   background-color: white;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
   height: 2000px;
+  width:100%
 }
 
 
@@ -173,4 +174,12 @@ body {
     outline: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  body {
+    width:100%;
+  }
+
 }
