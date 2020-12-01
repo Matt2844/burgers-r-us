@@ -25,7 +25,7 @@ const pool = new Pool({
 });
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail, getUserWithId, productsObj } = require('./database')
+const { getUserWithEmail, getUserWithId, productsObj } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -59,7 +59,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = {user: null, ArrObj: productsObj}
+  const templateVars = { user: null, ArrObj: productsObj }
   res.render("index", templateVars);
 });
 
@@ -70,20 +70,20 @@ app.get('/register', (req, res) => {
   res.render("register", templateVars);
 });
 
-app.get('/registerFailed', (req,res) => {
+app.get('/registerFailed', (req, res) => {
   res.render("registerFailed")
 })
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
-    console.log("THIS-IS-WHAT-WE-WANT:",response)
-    if(!response) {
+    console.log("THIS-IS-WHAT-WE-WANT:", response)
+    if (!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
       res.redirect('/')
       return pool.query(sqlQuery, values).then((result) => result.rows[0]);
     } else {
-      let templateVars = {user: null}
+      let templateVars = { user: null }
       res.render("registerFailed", templateVars)
     }
   })
@@ -93,7 +93,7 @@ app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
   getUserWithEmail(req.body.email).then((response) => {
     console.log(response.email, response.password)
-    if(response === null) {
+    if (response === null) {
       console.log("response is supposed to be empty here", response)
       res.send("You don't have an account, you need to register")
     } else if (response.password !== req.body.password) {
@@ -109,13 +109,13 @@ app.get('/checkout', (req, res) => {
   const templateVars = { user: null }
   res.render("checkout", templateVars);
 
-  res.render("checkout");
+  // res.render("checkout");
 
-  getUserWithID(req.session.user_id).then((response) => {
-    console.log("this is the RESPONSE value from /:", response)
-    const templateVars = { user: response }
-    res.render("checkout", templateVars);
-  })
+  // getUserWithId(req.session.user_id).then((response) => {
+  //   console.log("this is the RESPONSE value from /:", response)
+  //   const templateVars = { user: response }
+  //   res.render("checkout", templateVars);
+  // })
 
 });
 
