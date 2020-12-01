@@ -70,8 +70,13 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = {user: null, ArrObj: productsObj}
-  res.render("index", templateVars);
+  console.log(req.session.user_id)
+  getUserWithId(req.session.user_id).then((response) => {
+    console.log("THIS IS IN THE GET / ROUTE", response)
+    const templateVars = { user: response,
+      ArrObj: productsObj}
+    res.render("index", templateVars);
+  })
 });
 
 //ROUTES BELOW PROBABLY NEED TO BE MOVED
@@ -81,10 +86,21 @@ app.get('/register', (req, res) => {
   res.render("register", templateVars);
 });
 
-app.get('/registerFailed', (req,res) => {
-  let templateVars = {user: null}
-  res.render("registerFailed", templateVars)
-})
+app.get('/invalidLogin', (req, res) => {
+  const templateVars = {user: null , message: "Invalid Login Credentials, please check your information and try again"}
+  res.render("registerFailed", templateVars);
+});
+
+app.get('/accountMissing', (req, res) => {
+  const templateVars = {user: null , message: "You don't have an account, you need to register"}
+  res.render("registerFailed", templateVars);
+});
+
+app.get('/registerFailed', (req, res) => {
+  const templateVars = {user: null , message: "You're already a member! please log in.🍔 "}
+  res.render("registerFailed", templateVars);
+});
+
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
@@ -97,7 +113,6 @@ app.post('/register', (req, res) => {
         return result.rows[0];
       })
     } else {
-      let templateVars = {user: null}
       res.redirect('/registerFailed')
     }
   })
@@ -106,20 +121,21 @@ app.post('/register', (req, res) => {
 app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
   getUserWithEmail(req.body.email).then((response) => {
-    console.log(response.email, response.password)
     if(response === null) {
-      console.log("response is supposed to be empty here", response)
-      res.send("You don't have an account, you need to register")
+      res.redirect('/accountMissing')
     } else if (response.password !== req.body.password) {
-      res.send("Invalid Login Credentials, please check your information and try again")
+      res.redirect('/invalidLogin')
     } else if (response.password === req.body.password) {
-      res.send(`Welcome back ${response.name}! What can we get you today?`)
+      console.log("IF CHECK IN SHOULD WORK",response)
+      req.session.user_id = response.id;
+      res.redirect('/')
     }
   })
 })
 
 app.get('/checkout', (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
+    console.log("THIS IS AT CHECKOUT", response)
     const templateVars = { user: response,
       ArrObj: productsObj}
     res.render("checkout", templateVars);

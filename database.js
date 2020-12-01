@@ -223,10 +223,10 @@ const getUserWithEmail = function(email) {
   return pool.query(sqlQuery, values).then((res) => {
     // console.log("Length VALUE", res.rows.length)
     if (res.rows.length === 0) {
-      // console.log(null)
+      console.log("getUserWithEmail RESPONSE", null)
       return null;
     }
-    // console.log(res.rows[0])
+    console.log("getUserWithEmail RESPONSE", res.rows[0])
     return res.rows[0];
   });
 };
@@ -240,7 +240,7 @@ const getUserWithId = (ID) => {
       console.log("IN length check=", res.rows[0])
       return null
     } else {
-      console.log("Final state=", res.rows[0])
+      console.log("Final state=", res.rows[0].name)
       return res.rows[0];
     }
   })

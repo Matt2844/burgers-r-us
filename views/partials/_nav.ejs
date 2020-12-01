@@ -26,11 +26,15 @@
       <img class="logo-img" src="../docs/logo_burgersrus.png" style="width:100px;height:70px">
       <a href="/"><h1>Burgers-R-Us</h1></a>
     </div>
+    <% if(user){ %>
+      <h3> Hi <%=user.name%>! We can we get you today?</h3>
+    <% } %>
   </header>
 
   <div class="list-action">
     <div class="login-link">
     <ul>
+      <% if(!user){ %>
       <li id="login">
         <a id="login-trigger" href="#">Log in <span>▼</span></a>
         <div id="login-content">
@@ -50,6 +54,7 @@
     <div class="register-link" >
       <a href="/register">Register</a>
     </div>
+    <% } %>
     <div class="checkout-link" href="/checkout">
       <i class="fas fa-shopping-cart"></i>
       <a href="/checkout">Checkout</a>
