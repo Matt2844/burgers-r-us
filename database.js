@@ -250,5 +250,6 @@ module.exports = {
   getUserWithEmail,
   makeObject,
   createProductHtml,
-  getUserWithId
+  getUserWithId,
+  productsObj
 }
