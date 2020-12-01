@@ -17,21 +17,21 @@ const pool = new Pool({
 const productsObj = [
   {
     name: 'Nachos',
-    picture: './docs/nachos.jpg',
+    picture: './docs/nachos.png',
     description: 'Homemade cheese sauce, salsa, jalapeños.',
     price: 11.95,
     category: 'Appetizers'
   },
   {
     name: 'Chili Nachos',
-    picture: './docs/nachos_chili.jpeg',
+    picture: './docs/nachos-chili.png',
     description: 'Homemade beef chili, jalapeños, homemade cheese sauce, salsa.',
     price: 13.95,
     category: 'Appetizers'
   },
   {
     name: 'Cheese Sticks',
-    picture: './docs/cheese_stick.jpg',
+    picture: './docs/cheese_stick.png',
     description: 'Mozzarella cheese sticks. Served with marinara sauce',
     price: 9.95,
     category: 'Appetizers'
@@ -129,7 +129,7 @@ const productsObj = [
   },
   {
     name: 'Cheesy Dog',
-    picture: './docs/Mac_Hotdog-mac.jpg',
+    picture: './docs/HotDog-cheesy.jpg',
     description: 'Mac N Cheese topped with baked mozzarella. You know you want two of these',
     price: 11.95,
     category: 'Classics'
