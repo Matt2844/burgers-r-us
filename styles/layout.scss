@@ -26,7 +26,7 @@ body {
   padding: 5px;
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
 }
 
   #logo {
@@ -35,18 +35,26 @@ body {
   }
 
   #logo .logo-img {
-    width: 10vw;
-    height: 8vw;
-    margin: 30px 0px 30px 20px;
+    width: 30vw;
+    height: 20vw;
+    margin: 30px 0px 0px 20px;
   }
 
   #logo h1 {
     font-size: 4vw;;
     text-align: center;
     color: black;
-    margin: 30px 0px 30px 10px;
+    margin: 30px 0px 0px 10px;
     font-family: $title-text;
     text-decoration: none;
+  }
+
+  .welcome-name {
+    display: flex;
+    margin-left: 11vw;
+    font-family: fantasy;
+    font-weight: 700;
+    font-size: 2vw;
   }
 
   .menu-container {
@@ -60,7 +68,7 @@ body {
     align-content: baseline;
     margin: 20px;
     font-family: $text;
-    font-size: 1.7vw;;
+    font-size: 80%;
     color: #000000;
     text-decoration: none;
   }
@@ -78,10 +86,16 @@ body {
     margin-top: 8%;
       a {
         color: #000000;
-        text-decoration: none;
+        text-decoration: underline black;
       }
       i {
-        margin-top: 5px;
+        visibility: hidden;
+      }
+      &:hover {
+        i {
+          visibility: visible;
+          margin-top: 5px;
+        }
       }
   }
 
@@ -185,6 +199,15 @@ body {
   #login #submit:active {
     outline: none;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+  }
+}
+
+
+@media only screen and (min-width: 800px) {
+  .checkout-link {
+    font-size: large;
+    margin-top: 30px;
+    margin-right:30px;
   }
 }
 
