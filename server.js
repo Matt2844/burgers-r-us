@@ -70,7 +70,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = {user: null, ArrObj: productsObj}
+  const templateVars = {user: null, productsObj: productsObj}
   res.render("index", templateVars);
 });
 
@@ -91,8 +91,9 @@ app.post('/register', (req, res) => {
     if(!response) {
       let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-      res.redirect('/')
       return pool.query(sqlQuery, values).then((result) => {
+        res.redirect('/')
+        req.session.user_id = result.rows[0].id;
         return result.rows[0];
       })
     } else {
