@@ -86,6 +86,21 @@ app.get('/register', (req, res) => {
   res.render("register", templateVars);
 });
 
+app.get('/invalidLogin', (req, res) => {
+  const templateVars = {user: null , message: "Invalid Login Credentials, please check your information and try again"}
+  res.render("registerFailed", templateVars);
+});
+
+app.get('/accountMissing', (req, res) => {
+  const templateVars = {user: null , message: "You don't have an account, you need to register"}
+  res.render("registerFailed", templateVars);
+});
+
+app.get('/registerFailed', (req, res) => {
+  const templateVars = {user: null , message: "You're already a member! please log in.🍔 "}
+  res.render("registerFailed", templateVars);
+});
+
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {
@@ -98,8 +113,7 @@ app.post('/register', (req, res) => {
         return result.rows[0];
       })
     } else {
-      let templateVars = {user: null, message: "You're already a member! please log in.🍔 "}
-      res.render('/registerFailed', templateVars)
+      res.redirect('/registerFailed')
     }
   })
 })
@@ -108,12 +122,9 @@ app.post('/login', (req, res) => {
   console.log(req.body.email, req.body.password)
   getUserWithEmail(req.body.email).then((response) => {
     if(response === null) {
-      console.log("response is supposed to be empty here", response)
-      const templateVars = {user:null , message: "You don't have an account, you need to register"}
-      res.render('/registerFailed', templateVars)
+      res.redirect('/accountMissing')
     } else if (response.password !== req.body.password) {
-      const templateVars = {user:null , message: "Invalid Login Credentials, please check your information and try again"}
-      res.render('/registerFailed', templateVars)
+      res.redirect('/invalidLogin')
     } else if (response.password === req.body.password) {
       console.log("IF CHECK IN SHOULD WORK",response)
       req.session.user_id = response.id;
