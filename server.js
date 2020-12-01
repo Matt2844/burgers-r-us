@@ -70,7 +70,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = {user: null, productsObj: productsObj}
+  const templateVars = {user: null, ArrObj: productsObj}
   res.render("index", templateVars);
 });
 
@@ -119,18 +119,11 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/checkout', (req, res) => {
-
-  const templateVars = { user: null }
-  res.render("checkout", templateVars);
-
-  res.render("checkout");
-
-  getUserWithID(req.session.user_id).then((response) => {
-    console.log("this is the RESPONSE value from /:", response)
-    const templateVars = { user: response }
+  getUserWithId(req.session.user_id).then((response) => {
+    const templateVars = { user: response,
+      ArrObj: productsObj}
     res.render("checkout", templateVars);
   })
-
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED
