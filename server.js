@@ -81,6 +81,9 @@ app.get('/register', (req, res) => {
   res.render("register");
 });
 
+app.get('/registerFailed', (req,res) => {
+  res.render("registerFailed")
+})
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
   getUserWithEmail(req.body.email).then((response) => {

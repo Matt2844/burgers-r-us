@@ -164,15 +164,13 @@ const productsObj = [
   }
 ]
 
-
-
-/// ONLY USED TO AVOID MANUALLY CREATING THE PRODUCTS ARRAY OF OBJECTS
-const makeObject= function() {
+/// ONLY USED TO AVOID MANUALLY CREATING THE PRODUCTS ARRAY OF OBJECT
+const makeObject = function() {
   let arrayObj = []
   let sqlQuery = 'SELECT * FROM products;'
 
   return pool.query(sqlQuery, []).then((res) => {
-    for(let row of res.rows) {
+    for (let row of res.rows) {
       arrayObj.push({
         name: row.name,
         picture: row.picture,
@@ -186,7 +184,7 @@ const makeObject= function() {
 
 }
 
-const createProductHtml = function (obj) {
+const createProductHtml = function(obj) {
   let productLine = `
   <div class="item">
   <div class="item-img">
@@ -213,7 +211,7 @@ const createProductHtml = function (obj) {
  * @param {String} email The email of the user.
  * @return {Promise<{}>} A promise to the user.
  */
-const getUserWithEmail = function (email) {
+const getUserWithEmail = function(email) {
   console.log("Email being received", email)
   const values = [email];
 
@@ -232,6 +230,7 @@ const getUserWithEmail = function (email) {
     return res.rows[0];
   });
 };
+
 
 const getUserWithID = function (ID) {
   console.log("ID being received", ID)
