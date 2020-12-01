@@ -78,7 +78,8 @@ app.get("/", (req, res) => {
 //ROUTES BELOW PROBABLY NEED TO BE MOVED
 
 app.get('/register', (req, res) => {
-  res.render("register");
+  const templateVars = { user: null }
+  res.render("register", templateVars);
 });
 
 app.get('/registerFailed', (req,res) => {
@@ -122,10 +123,8 @@ app.post("/logout", (req, res) => {
 });
 
 app.get('/checkout', (req, res) => {
-  getUserWithID(req.session.user_id).then((response) => {
-    const templateVars = { user: response }
-    res.render("checkout", templateVars);
-  })
+  const templateVars = { user: null }
+  res.render("checkout", templateVars);
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED
