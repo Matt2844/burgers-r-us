@@ -98,7 +98,8 @@ app.post('/register', (req, res) => {
         res.redirect('/')
       })
     } else {
-      res.render("registerFailed")
+      let templateVars = {user: null}
+      res.render("registerFailed", templateVars)
     }
   })
 })
@@ -123,8 +124,11 @@ app.post("/logout", (req, res) => {
 });
 
 app.get('/checkout', (req, res) => {
-  const templateVars = { user: null }
-  res.render("checkout", templateVars);
+  getUserWithID(req.session.user_id).then((response) => {
+    console.log("this is the RESPONSE value from /:", response)
+    const templateVars = { user: response }
+    res.render("checkout", templateVars);
+  })
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED
