@@ -8,8 +8,11 @@
       <img class="logo-img" src="../docs/burger_logo.png" style="width:70px;height:70px">
       <a href="/"><h1>Burgers-R-Us</h1></a>
     </div>
+    <% if(user){%>
+      <p>Hey <%=user.name%>! What can we get you today?</p>
+      <% }%>
   </header>
-
+  <% if(!user){%>
   <div class="list-action">
     <div class="login-link">
     <ul>
@@ -32,6 +35,7 @@
     <div class="register-link" >
       <a href="/register">Register</a>
     </div>
+    <% }%>
     <!-- <div class="login-hidden" onclick="loginVisible()">Login</div> -->
     <div class="checkout-link" href="/checkout">
       <a href="/checkout">Checkout</a>
