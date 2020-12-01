@@ -104,10 +104,10 @@ body {
   nav #login-content {
     position: absolute;
     border: 1px solid goldenrod;
-    top: 24px;
+    top: 40px;
     right: 0;
     z-index: 999;
-    background: lemonchiffon;
+    background: white;
     background-image: linear-gradient(top, #fff, #eee);
     padding: 15px;
     box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
@@ -121,7 +121,7 @@ body {
     display: flex;
     align-items: center;
     .form-control {
-      background-color: lemonchiffon;
+      background-color: white;
       border: 2px solid $primary-color;
       margin:10px;
     }
@@ -132,7 +132,7 @@ body {
   }
 
   #inputs input {
-    background: lemonchiffon;
+    background: white;
     border: 2px solid $primary-color;
     padding: 6px 5px;
     margin: 0 0 5px 0;
