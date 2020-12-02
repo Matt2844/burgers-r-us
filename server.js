@@ -160,7 +160,7 @@ app.post('/login', (req, res) => {
 app.get('/checkout', (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
     const templateVars = { user: response,
-      ArrObj: productsObj}
+      ArrObj: productsObj, message:"Almost there !! "}
     res.render("checkout", templateVars);
   })
 });
