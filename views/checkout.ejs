@@ -106,7 +106,28 @@
 
   <section class="confirm-order">
     <div>
-      <button class="order-button">Confirm Order</button>
+
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn" class="order-button">Confirm Order</button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Thank you [USER NAME] for odering at BURGERS-R-US !</h2>
+            <div class="order-message">
+              <p>We sent an SMS to [USER PHONE]></p>
+              <p>Check your phone to know when to swingby to our takeaway counter</p>
+              <P>and pick up your delicious food !</p>
+                <div class="typewritter">
+                  <h3>Bon appetit !</h3>
+                </div>
+            </div>
+          <img class="logo-img" src="./docs/logo_burgersrus.png">
+          </div>
+      </div>
     </div>
   </section>
 
@@ -222,6 +243,29 @@
       });
     });
   });
+
+
+//// MODAL ////
+//Get the modal
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
 
 </script>
