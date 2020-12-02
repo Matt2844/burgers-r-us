@@ -67,6 +67,16 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
+const errorMessage = [
+  "Invalid Login Credentials, please check your information and try again",
+  "You don't have an account, you need to register",
+  "You're already a member! please log in.🍔 "
+]
+
+const navMessages = [
+
+]
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -88,17 +98,17 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/invalidLogin', (req, res) => {
-  const templateVars = {user: null , message: "Invalid Login Credentials, please check your information and try again"}
+  const templateVars = {user: null , message: errorMessage[0]}
   res.render("registerFailed", templateVars);
 });
 
 app.get('/accountMissing', (req, res) => {
-  const templateVars = {user: null , message: "You don't have an account, you need to register"}
+  const templateVars = {user: null , message: errorMessage[1]}
   res.render("registerFailed", templateVars);
 });
 
 app.get('/registerFailed', (req, res) => {
-  const templateVars = {user: null , message: "You're already a member! please log in.🍔 "}
+  const templateVars = {user: null , message: errorMessage[2]}
   res.render("registerFailed", templateVars);
 });
 
