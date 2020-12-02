@@ -116,9 +116,9 @@
         <!-- Modal content -->
         <div class="modal-content">
           <span class="close">&times;</span>
-          <h2>Thank you [USER NAME] for odering at BURGERS-R-US !</h2>
+          <h2>Thank you <%= user.name %> for odering at BURGERS-R-US !</h2>
             <div class="order-message">
-              <p>We sent an SMS to [USER PHONE]></p>
+              <p>We sent an SMS to <%= user.phone_number %></p>
               <p>Check your phone to know when to swingby to our takeaway counter</p>
               <P>and pick up your delicious food !</p>
                 <div class="typewritter">
