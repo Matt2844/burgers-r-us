@@ -252,10 +252,16 @@ const getUserWithId = (ID) => {
   });
 };
 
+function randomizer(Arr) {
+  console.log(Math.floor(Math.random() * Math.floor(3)));
+  return Arr[Math.floor(Math.random() * Math.floor(3))];
+}
+
 module.exports = {
   getUserWithEmail,
   makeObject,
   createProductHtml,
   getUserWithId,
   productsObj,
+  randomizer
 };
