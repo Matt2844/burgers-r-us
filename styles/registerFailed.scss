@@ -1,0 +1,50 @@
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
+
+body {
+  margin-top:200px;
+  font-family: $text;
+  min-height: 100vh;
+}
+
+.container {
+  width:100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: black;
+  font-family: $text;
+  h1 {
+    display: inline-block;
+    margin: 0px;
+    font-size: 200px;
+    line-height: 0.9;
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    background: url(https://pizzazzerie.com/wp-content/uploads/2015/08/party-food-mini-cheeseburgers-pizzazzerie.jpg);
+    background-position: bottom;
+    background-repeat: space;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+  a {
+    text-decoration: none;
+    background: pink;
+    color: yellow;
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: 0.4s;
+    margin: 5% 30%;
+    &:hover {
+      background: orange;
+    }
+  }
+}

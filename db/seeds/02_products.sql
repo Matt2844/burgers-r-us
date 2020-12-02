@@ -3,7 +3,7 @@ VALUES ('Nachos', './docs/nachos.jpg', 'Homemade cheese sauce, salsa, jalapeños
 INSERT INTO products (name, picture, description, price, category)
 VALUES ('Chili Nachos', './docs/nachos_chili.jpg', 'Homemade beef chili, jalapeños, homemade cheese sauce, salsa.', 13.95, 'Appetizers');
 INSERT INTO products (name, picture, description, price, category)
-VALUES ('Cheese Sticks', './docs/cheese_stick.jpg', 'Mozzarella cheese sticks. Served with marinara sauce', 9.95, 'Appetizers');
+VALUES ('Cheese Sticks', './docs/cheese_stick.webp', 'Mozzarella cheese sticks. Served with marinara sauce', 9.95, 'Appetizers');
 INSERT INTO products (name, picture, description, price, category)
 VALUES ('Fried Pickles', './docs/fried_pickles.jpg', 'Served with chipotle Sriracha dip', 7.95, 'Appetizers');
 
