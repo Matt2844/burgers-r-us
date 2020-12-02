@@ -199,6 +199,9 @@
       // Get the specific subtotal for that specific item
       let thisItemSubtotal = buttonDiv.find(".quantity-times-price");
 
+      // Testing
+      console.log(typeof $('.quantity-times-price').html())
+
       // The buttons that change the item quantity
       let $btn = $(this);
       $('#output-' + $btn.data('index')).html(function(i, val) {
@@ -211,21 +214,15 @@
           alert('Woah there! No parties allowed during a pandemic! - J.Trudeau')
         }
 
-        // Adding up the subtotals and inserting it into a hidden HTML placeholder
+        // Adding up the subtotals and inserting it into an HTML placeholder
         quantityTimesPrice = (val * thisPriceNum);
         thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
 
         return val;
       });
     });
-
-    // Cart subtotal
-    const getSubtotal = function() {
-      let subtotal = $('.cart-subtotal')
-    }
-
-
   });
+
 
 </script>
 
