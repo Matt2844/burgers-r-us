@@ -83,17 +83,22 @@ const navMessages = [
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
-    const templateVars = {
-      user: response,
-      ArrObj: productsObj,
-      message: randomizer([
-        `Hi ${response.name}! What can we get you today?`,
-        `Are you starving ${response.name}? Maybe you should try our Burger Tower`,
-        `How about we get you started with a few (or many) apetizers ${response.name}?`,
-        `AAAAHHHHHHH!!!!!!!!! Do I have your attention ${response.name}? ok, order more!`
-      ])
+    if (response) {
+      const templateVars = {
+        user: response,
+        ArrObj: productsObj,
+        message: randomizer([
+          `Hi ${response.name}! What can we get you today?`,
+          `Are you starving ${response.name}? Maybe you should try our Burger Tower`,
+          `How about we get you started with a few (or many) apetizers ${response.name}?`,
+          `AAAAHHHHHHH!!!!!!!!! Do I have your attention ${response.name}? ok, order more!`
+        ])
+      }
+      res.render("index", templateVars);
+    } else {
+      const templateVars = {user: response, ArrObj: productsObj}
+      res.render("index", templateVars);
     }
-    res.render("index", templateVars);
   })
 });
 
