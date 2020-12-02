@@ -37,7 +37,7 @@ app.use(
 );
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail, getUserWithId, productsObj } = require('./database')
+const {getUserWithEmail, getUserWithId, productsObj, randomizer } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -83,6 +83,12 @@ const navMessages = [
 function getRandomInt(3) {
   return Math.floor(Math.random() * Math.floor(3));
 }
+
+getRandomInt()
+getRandomInt()
+getRandomInt()
+getRandomInt()
+getRandomInt()
 
 // Home page
 // Warning: avoid creating more routes in this file!
