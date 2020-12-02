@@ -54,12 +54,16 @@
     <div class="register-link" >
       <a href="/register">Register</a>
     </div>
-    <% } %>
-    <div class="checkout-link" href="/checkout">
+    <% } else { %>
+    <div class="checkout-link">
       <i class="fas fa-shopping-cart"></i>
       <a href="/checkout">Checkout</a>
     </div>
   </div>
+  <form class="checkout-link" action="/logout"method="POST">
+    <button type="submit" class="btn btn-success">logout</button>
+  </form>
+  <% } %>
 </nav>
 
 <script>

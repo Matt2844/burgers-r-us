@@ -127,7 +127,6 @@ app.post('/login', (req, res) => {
     if(response === null) {
       res.redirect('/accountMissing')
     } else if (bcrypt.compareSync(req.body.password, response.password)) {
-      console.log("IF CHECK IN SHOULD WORK",response)
       req.session.user_id = response.id;
       res.redirect('/')
     } else if (response.password !== req.body.password) {
@@ -142,6 +141,11 @@ app.get('/checkout', (req, res) => {
       ArrObj: productsObj}
     res.render("checkout", templateVars);
   })
+});
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
+  res.redirect("/");
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED
