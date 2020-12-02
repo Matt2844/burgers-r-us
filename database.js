@@ -252,11 +252,10 @@ const getUserWithId = (ID) => {
   });
 };
 
-function randomizer() {
+function randomizer(Arr) {
   console.log(Math.floor(Math.random() * Math.floor(3)));
-  return Math.floor(Math.random() * Math.floor(3));
+  return Arr[Math.floor(Math.random() * Math.floor(3))];
 }
-
 
 module.exports = {
   getUserWithEmail,

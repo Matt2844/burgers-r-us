@@ -76,29 +76,23 @@ const errorMessage = [
 const navMessages = [
   "Hi <%=user.name%>! What can we get you today?",
   "Are you starving <%=user.name%>? Maybe you should try our Burger Tower",
-  "How about we get you started with a few (or many) apetizers <%=user.name%>?",
+  "How about we get you started with a few (or many) apetizers ${<%=user.name%>}?",
 ]
-
-//RANDOMIZER TO USE WITH NAV ITEMS
-function getRandomInt(3) {
-  return Math.floor(Math.random() * Math.floor(3));
-}
-
-getRandomInt()
-getRandomInt()
-getRandomInt()
-getRandomInt()
-getRandomInt()
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  console.log(req.session.user_id)
   getUserWithId(req.session.user_id).then((response) => {
-    console.log("THIS IS IN THE GET / ROUTE", response)
-    const templateVars = { user: response,
-      ArrObj: productsObj}
+    const templateVars = {
+      user: response,
+      ArrObj: productsObj,
+      message: randomizer([
+        `Hi ${response.name}! What can we get you today?`,
+        `Are you starving ${response.name}? Maybe you should try our Burger Tower`,
+        `How about we get you started with a few (or many) apetizers ${response.name}?`,
+        `AAAAHHHHHHH!!!!!!!!! Do I have your attention ${response.name}? ok, order more!`
+      ])
+    }
     res.render("index", templateVars);
   })
 });
