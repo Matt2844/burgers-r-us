@@ -1,10 +1,5 @@
 // Register Page
 
-// jQuery (if needed)
-$(document).ready(function() {
-  console.log("DOM ready, register-page");
-});
-
 
 // Vanilla JS, formats the phone number on register page
 const formatTel = () => {
