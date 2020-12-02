@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+const bcrypt = require("bcrypt");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -24,8 +25,19 @@ const pool = new Pool({
   database: "midterm",
 });
 
+////////COOKIE SESSIONS
+
+const cookieSession = require("cookie-session");
+
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"],
+  })
+);
+
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const { getUserWithEmail, getUserWithId, productsObj } = require('./database')
+const {getUserWithEmail, getUserWithId, productsObj } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -59,8 +71,13 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const templateVars = { user: null, ArrObj: productsObj }
-  res.render("index", templateVars);
+  console.log(req.session.user_id)
+  getUserWithId(req.session.user_id).then((response) => {
+    console.log("THIS IS IN THE GET / ROUTE", response)
+    const templateVars = { user: response,
+      ArrObj: productsObj}
+    res.render("index", templateVars);
+  })
 });
 
 //ROUTES BELOW PROBABLY NEED TO BE MOVED
@@ -70,53 +87,61 @@ app.get('/register', (req, res) => {
   res.render("register", templateVars);
 });
 
+app.get('/invalidLogin', (req, res) => {
+  const templateVars = {user: null , message: "Invalid Login Credentials, please check your information and try again"}
+  res.render("registerFailed", templateVars);
+});
+
+app.get('/accountMissing', (req, res) => {
+  const templateVars = {user: null , message: "You don't have an account, you need to register"}
+  res.render("registerFailed", templateVars);
+});
+
 app.get('/registerFailed', (req, res) => {
-  res.render("registerFailed")
-})
+  const templateVars = {user: null , message: "You're already a member! please log in.🍔 "}
+  res.render("registerFailed", templateVars);
+});
+
 ////// WILL NEED to add template vars to use the newly aquired user information and add it to NAV to show
 app.post('/register', (req, res) => {
-  getUserWithEmail(req.body.email).then((response) => {
-    console.log("THIS-IS-WHAT-WE-WANT:", response)
-    if (!response) {
-      let values = [req.body.name, req.body.phone, req.body.email, req.body.password]
+  let inputEmail = req.body.email.toLowerCase()
+  getUserWithEmail(inputEmail).then((response) => {
+    if(!response) {
+      const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+      let values = [req.body.name, req.body.phone, inputEmail, hashedPassword] ///email enterred will be lower case when added
       let sqlQuery = `INSERT INTO users(name, phone_number, email, password) VALUES ($1, $2, $3, $4) RETURNING *;`
-      res.redirect('/')
-      return pool.query(sqlQuery, values).then((result) => result.rows[0]);
+      return pool.query(sqlQuery, values).then((result) => {
+        req.session.user_id = result.rows[0].id;
+        res.redirect('/')
+        return result.rows[0];
+      })
     } else {
-      let templateVars = { user: null }
-      res.render("registerFailed", templateVars)
+      res.redirect('/registerFailed')
     }
   })
 })
 
 app.post('/login', (req, res) => {
-  console.log(req.body.email, req.body.password)
-  getUserWithEmail(req.body.email).then((response) => {
-    console.log(response.email, response.password)
-    if (response === null) {
-      console.log("response is supposed to be empty here", response)
-      res.send("You don't have an account, you need to register")
+  let inputEmail = req.body.email.toLowerCase()
+  getUserWithEmail(inputEmail).then((response) => {
+    if(response === null) {
+      res.redirect('/accountMissing')
+    } else if (bcrypt.compareSync(req.body.password, response.password)) {
+      console.log("IF CHECK IN SHOULD WORK",response)
+      req.session.user_id = response.id;
+      res.redirect('/')
     } else if (response.password !== req.body.password) {
-      res.send("Invalid Login Credentials, please check your information and try again")
-    } else if (response.password === req.body.password) {
-      res.send(`Welcome back ${response.name}! What can we get you today?`)
+      res.redirect('/invalidLogin')
     }
   })
-})
+});
 
 app.get('/checkout', (req, res) => {
-
-  const templateVars = { user: null }
-  res.render("checkout", templateVars);
-
-  // res.render("checkout");
-
-  // getUserWithId(req.session.user_id).then((response) => {
-  //   console.log("this is the RESPONSE value from /:", response)
-  //   const templateVars = { user: response }
-  //   res.render("checkout", templateVars);
-  // })
-
+  getUserWithId(req.session.user_id).then((response) => {
+    const templateVars = { user: response,
+      ArrObj: productsObj}
+    res.render("checkout", templateVars);
+  })
 });
 
 //ROUTES ABOVE PROBABLY NEED TO BE MOVED

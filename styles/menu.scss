@@ -2,6 +2,9 @@ $title-text: 'lobster', cursive;
 $text: 'Montserrat', sans-serif;
 $primary-color: #b8860b;
 
+*{
+  box-sizing: border-box;
+}
 
 body {
   background-color: white;
@@ -9,32 +12,32 @@ body {
 }
 
 .main-image {
-	display: flex;
-	margin-top: 97px;
-	justify-content: center;
+  display: flex;
+  margin-top: 130px;
   flex-direction: column;
-  width:120%;
+  width: 100%;
+  background-size: cover;
 	.page-title {
-		color: cornsilk;
-		display: flex;
-		justify-content: center;
-		margin: 15% 50% 10% 50%;
-		font-size: 400%;
-		border: 1px solid cornsilk;
-	}
-	p {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-family: monospace;
-		font-size: 300%;
-		color: cornsilk;
-	}
+    color: cornsilk;
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+    font-size: 80px;
+  }
+  .title-msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 30px;
+    color: cornsilk;
+    margin: 0 20% 10% 20%;
+  }
 }
 .main-content {
 	background-color: white;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  width:120%;
+  width:100%;
   overflow: hidden;
 }
 
@@ -53,28 +56,30 @@ body {
 	.item {
     display: flex;
     padding:10px;
+    overflow: auto;
 	}
 	h2 {
     border-bottom: 1px solid $primary-color;
 		font-family: sans-serif;
 		font-weight: bold;
 		color: $primary-color;
-		font-size: 36px;;
+		font-size: 1.5rem;
 		display: flex;
     justify-content: center;
     margin: 15px;
-	}
-	.item-img {
-		display: flex;
-    margin: 15px;
-    padding-left:15px;
-    width:20%;
+  }
+  .product-img {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    margin: 40px;
     align-items: center;
-	}
+  }
+
 	.detail {
 		display: flex;
     flex-direction: column;
-    margin: 10px 10px 10px 0px;
+    margin: 10px;
     padding:10px;
     width: 80%
 	}
@@ -105,21 +110,21 @@ body {
 		margin: 0px 20px 0px 20px;
 	}
 	.add-cart {
-		display: inline-block;
-		padding: 0.35em 1.2em;
-    border: 0.1em solid $primary-color;
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid #b8860b;
     background-color: transparent;
-		margin: 20px 500px 20px 10px;
-		box-sizing: border-box;
-		font-family: 'Roboto',sans-serif;
-		font-weight: 300;
-		color: $primary-color;
-		text-align: center;
-		transition: all 0.2s;
+    box-sizing: border-box;
+    font-family: 'Roboto',sans-serif;
+    font-weight: 300;
+    color: #b8860b;
+    text-align: center;
+    transition: all 0.2s;
+    margin: 20px;
 		&:hover {
 			color: #000000;
-      background-color: $primary-color;
-      transform: scale(1.2);
+      background-color: lightgoldenrodyellow;
+      transform: scale(1.1);
 		}
 	}
 }
