@@ -19,11 +19,12 @@ body {
   justify-content: center;
   width: 100%;
   height: 350px;
-
+  background-size: cover;
+  background-repeat: no-repeat;
     .page-title{
       color: $primary-color;
       background-color: white;
-      margin: 15%;
+      margin: 140px;
       font-size: 300%;
       border: 1px solid $primary-color;
       display: flex;
@@ -37,6 +38,8 @@ body {
   flex-direction: column;
   border: 3px solid $primary-color;
   margin: 8%;
+  background-color:white;
+
 
   .title {
     color: $primary-color;
@@ -86,21 +89,20 @@ body {
     justify-content: space-between;
     align-items: center;
     margin:15px;
+    width: 70%;
     .btn {
       background-color: transparent;
       border: 1px solid black;
       font-family: $title-text;
       font-size: 28px;
+      width: 40%;
     }
-
 
     .quantity{
       display: flex;
       align-items: baseline;
       justify-content: space-around;
       width:50%;
-
-
       .number-item {
         padding:10px;
         border-radius: 10px;
