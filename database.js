@@ -31,7 +31,7 @@ const productsObj = [
   },
   {
     name: "Cheese Sticks",
-    picture: "./docs/cheese_stick.png",
+    picture: "./docs/cheese_stick.webp",
     description: "Mozzarella cheese sticks. Served with marinara sauce",
     price: 9.95,
     category: "Appetizers",
