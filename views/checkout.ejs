@@ -62,7 +62,7 @@
           <div class="item-details">
             <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
         Jack. Also served without mushrooms for people with working taste buds">
-              Burger Cowboy
+              Burger Template
             </button>
             <div class="quantity">
               <button class="plus-btn" type="button" name="button">
@@ -73,7 +73,7 @@
               <button class="minus-btn" type="button" name="button">
                 <i class="fas fa-minus"></i>
               </button>
-              <span class="cart-total-price">35.95$</span>
+              <span class="cart-total-price">0.00$</span>
 
 
               <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
@@ -92,13 +92,13 @@
   <section id="confirmation">
     <div class="total">
       <div class="total-item">Subtotal
-        <div class="total-value" id="cart-subtotal">71.97</div>
+        <div class="total-value" id="cart-subtotal">0.00</div>
       </div>
       <div class="total-item">Tax (14.975%)
-        <div class="total-value" id="cart-tax">10.74</div>
+        <div class="total-value" id="cart-tax">0.00</div>
       </div>
       <div class="total-item">Grand Total
-        <div class="total-value" id="cart-total">82.75</div>
+        <div class="total-value" id="cart-total">0.00</div>
       </div>
     </div>
   </section>
@@ -119,18 +119,34 @@
   //   $('[data-toggle="tooltip"]').tooltip()
   // })
 
+  // Loading jQuery
   $(document).ready(function() {
     console.log(`loaded checkout below`)
+    // The stored food cart items from the menu page
     let cart_now = JSON.parse(localStorage.getItem('cart'))
 
-    // let arrCart = JSON.stringify(cart_now);
+    // Counter to assign unique class names to the OUTPUT of plus/minus buttons
+    let btnNumId = 0;
+    // Counter to assign unique class names to the plus buttons
+    let plusBtn = 0;
+    // Counter to assign unique class names to the minus buttons
+    let minusBtn = 0;
+    // Assigning values to the data-index attribute
+    let dataIndex = 0;
 
+    // Loops though the imported menu items and appends HTML to checkout
+    /* NOTE: class "quantity-times-price" at the bottom of cartItemHTML is "invisible" but is used
+       as a placeholder to calculate the final total. */
     for (let i = 0; i < cart_now.length; i++) {
+      btnNumId++;
+      plusBtn++;
+      minusBtn++;
+      dataIndex++;
       let title = cart_now[i].title;
       let priceStr = cart_now[i].price;
       let price = priceStr
       let description = JSON.stringify(cart_now[i].description);
-      console.log(price);
+      console.log(title);
 
       let cartItemHTML =
         `<div id="order-item">
@@ -144,17 +160,21 @@
         <a class="cart-item-name">${title}
           <!-- reference to the item chosen -->
         </a>
+
         <p class="temporary-styling" style="font-size:10px;margin-left:20px;margin-right:30px">${description}<p>
+
         <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
+          <button class="food-item-btn" id="plus-btn-${plusBtn}" type="button" data-index="${dataIndex}" data-inc="1"name="button">
             <i class="fas fa-plus"></i>
           </button>
 
-          <input class="number-item" type="number" name="number" value="1">
-          <button class="minus-btn" type="button" name="button">
+          <number id=output-${btnNumId} style="margin:0px 10px 0px 10px;">1</number>
+
+          <button class="food-item-btn" id="minus-btn-${minusBtn}" type="button" data-index="${dataIndex}" data-inc="-1" name="button">
             <i class="fas fa-minus"></i>
           </button>
-          <span class="cart-total-price">${price}</span>
+          <span class="cart-total-price">${price}$</span>
+          <span class="quantity-times-price" style="font-size:1px;visibility:hidden;">${price}</span>
 
         </div>
       </div>
@@ -165,7 +185,44 @@
 
     };
 
-    console.log('end of items')
+    console.log('end of items');
+
+    // When the quantity button is clicked to add OR subtract item
+    $('.food-item-btn').click(function() {
+
+      // Selecting the item price and removing the dollar sign
+      let quantityTimesPrice = 0;
+      let buttonDiv = $(this).parent();
+      let thisPrice = buttonDiv.find(".cart-total-price").text();
+      let rmvDollarSign = thisPrice.slice(0, -1);
+      let thisPriceNum = Number(rmvDollarSign);
+      // Get the specific subtotal for that specific item
+      let thisItemSubtotal = buttonDiv.find(".quantity-times-price");
+
+      // The buttons that change the item quantity
+      let $btn = $(this);
+      $('#output-' + $btn.data('index')).html(function(i, val) {
+        val = val * 1 + $btn.data('inc');
+
+        if (val < 0) {
+          val = 0
+        };
+        if (val > 12) {
+          alert('Woah there! No parties allowed during a pandemic! - J.Trudeau')
+        }
+
+        // Adding up the subtotals and inserting it into a hidden HTML placeholder
+        quantityTimesPrice = (val * thisPriceNum);
+        thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
+
+        return val;
+      });
+    });
+
+    // Cart subtotal
+    const getSubtotal = function() {
+      let subtotal = $('.cart-subtotal')
+    }
 
 
   });

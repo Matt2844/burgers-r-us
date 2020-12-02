@@ -8,7 +8,7 @@ $(document).ready(function() {
   let cart = []
 
 
-  // Counter for the shopping cart icon and testing purposes
+  // Changes the food item title to pink and mostly for testing purposes
   const clickTesting = function() {
 
     $('.add-cart').click(function() {
@@ -17,9 +17,6 @@ $(document).ready(function() {
       let title = buttonDiv.find(".item-title");
       let colorfulTitle = title.css("color", "pink");
       colorfulTitle;
-
-
-
     })
   };
 
@@ -41,36 +38,6 @@ $(document).ready(function() {
 
     cart.push({ title, price, description })
     localStorage.setItem('cart', JSON.stringify(cart))
-    //     let cartItemHTML =
-    //       `<div id="order-item">
-    //   <div class="remove-item">
-    //     <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
-    //   </div>
-    //   <div class="item-img">
-    //     <img src="./docs/burger1.png" style="width:150px;height:150px">
-    //   </div>
-    //   <div class="item-details">
-    //     <a class="cart-item-name">${title}
-    //       <!-- reference to the item chosen -->
-    //     </a>
-    //     <div class="quantity">
-    //       <button class="plus-btn" type="button" name="button">
-    //         <i class="fas fa-plus"></i>
-    //       </button>
-
-    //       <input class="number-item" type="number" name="number" value="1">
-    //       <button class="minus-btn" type="button" name="button">
-    //         <i class="fas fa-minus"></i>
-    //       </button>
-    //       <span class="cart-total-price">${price}</span>
-
-    //     </div>
-    //   </div>
-    // </div>`
-
-    //     let foodItemElement = $('#menu').append(cartItemHTML);
-    //     console.log('appended to checkout loaded');
-    //     return foodItemElement;
   }
 
   addToCartClick();
