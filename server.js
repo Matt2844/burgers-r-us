@@ -74,8 +74,15 @@ const errorMessage = [
 ]
 
 const navMessages = [
-
+  "Hi <%=user.name%>! What can we get you today?",
+  "Are you starving <%=user.name%>? Maybe you should try our Burger Tower",
+  "How about we get you started with a few (or many) apetizers <%=user.name%>?",
 ]
+
+//RANDOMIZER TO USE WITH NAV ITEMS
+function getRandomInt(3) {
+  return Math.floor(Math.random() * Math.floor(3));
+}
 
 // Home page
 // Warning: avoid creating more routes in this file!
