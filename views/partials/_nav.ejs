@@ -27,15 +27,14 @@
       <a href="/"><h1>Burgers-R-Us</h1></a>
     </div>
       <% if(user){ %>
-        <div class="welcome-name">Hi <%=user.name%>! What can we get you today?</div>
+        <div class="welcome-name"><%=message%></div>
       <% } %>
   </header>
 
   <div class="list-action">
     <div class="login-link">
-    <ul>
       <% if(!user){ %>
-      <li id="login">
+      <div id="login">
         <a id="login-trigger" href="#">Log in <span>▼</span></a>
         <div id="login-content">
           <form id="login-visible" class="form-control login" action="/login" method="POST">
@@ -48,22 +47,27 @@
             </fieldset>
           </form>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </div>
     <div class="register-link" >
       <a href="/register">Register</a>
+      <i class="fas fa-hamburger fa-2x"></i>
     </div>
     <% } else { %>
-    <div class="checkout-link">
-      <i class="fas fa-shopping-cart"></i>
-      <a href="/checkout">Checkout</a>
+    <div class="login-state">
+      <div class="checkout-link">
+        <i class="fas fa-shopping-cart fa-2x"></i>
+        <a href="/checkout">Checkout</a>
+      </div>
+      <div class="logout">
+        <form class="checkout-link" action="/logout"method="POST">
+          <button type="submit" class="btn btn-primary">logout</button>
+        <i class="fas fa-sign-out-alt fa-2x"></i>
+        </form>
+      </div>
     </div>
+    <% } %>
   </div>
-  <form class="checkout-link" action="/logout"method="POST">
-    <button type="submit" class="btn btn-success">logout</button>
-  </form>
-  <% } %>
 </nav>
 
 <script>
