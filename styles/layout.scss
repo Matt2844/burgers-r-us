@@ -49,13 +49,38 @@ body {
     text-decoration: none;
   }
 
+
   .welcome-name {
-    display: flex;
-    margin-left: 11vw;
-    font-family: fantasy;
-    font-weight: 700;
-    font-size: 2vw;
+    font-size: 20px;
+    margin-left: 320px;
+    color: black;
+    font-family: monospace;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 20 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+      typing 3.5s steps(30, end),
+      blink-caret .5s step-end infinite;
   }
+
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+  }
+
+
+
+  Resources
+
 
   .menu-container {
     text-align: center;
@@ -65,10 +90,9 @@ body {
   .list-action {
     display: flex;
     align-items: center;
-    align-content: baseline;
-    margin-top: 40px;
+    margin-top: 0px;
     font-family: $text;
-    font-size: 20px;
+    font-size: 24px;
     color: #000000;
     text-decoration: none;
   }
@@ -93,13 +117,16 @@ body {
   .login-state {
     display: flex;
     .checkout-link {
-      margin-top: 30px;;
+      display: flex;
+      align-items: baseline;
+      margin-right: 20px;;
         a {
           color: #000000;
           text-decoration: underline black;
         }
         i {
-          visibility: hidden;
+          margin-right:5px;
+          visibility: hidden
         }
         &:hover {
           i {
@@ -229,12 +256,12 @@ body {
 }
 
 
-@media only screen and (min-width: 800px) {
-  .checkout-link {
-    font-size: large;
-    margin: 40px 30px 20px 30px;
-  }
-}
+// @media only screen and (min-width: 800px) {
+//   .checkout-link {
+//     font-size: large;
+//     margin: 40px 30px 20px 30px;
+//   }
+// }
 
 
 
