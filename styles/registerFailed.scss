@@ -48,3 +48,22 @@ body {
     }
   }
 }
+
+.error-message {
+  font-size: 16px;
+  margin-left: 50px;
+  color: black;
+  font-family: monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: .15em;
+  animation:
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+// typing effect
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
