@@ -11,6 +11,10 @@ const app = express();
 const morgan = require('morgan');
 const bcrypt = require("bcrypt");
 
+//////// TWILIO ----------
+
+
+
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
@@ -73,11 +77,6 @@ const errorMessage = [
   "You're already a member! please log in.🍔 "
 ]
 
-const navMessages = [
-  "Hi <%=user.name%>! What can we get you today?",
-  "Are you starving <%=user.name%>? Maybe you should try our Burger Tower",
-  "How about we get you started with a few (or many) apetizers ${<%=user.name%>}?",
-]
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
