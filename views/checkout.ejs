@@ -37,7 +37,7 @@
   <header>
     <%- include('partials/_nav')%>
   </header>
-  <div class="bkg-image" style="background-image : url('./docs/burgers_fun.png') ">
+  <div class="bkg-image" style="background-image : url('./docs/checkout.png') ">
     <h1 class="page-title">CONFIRM YOUR ORDER</h1>
   </div>
   <div id="shopping-cart">
@@ -100,6 +100,11 @@
   </div>
 </body>
 
+<footer>
+  <%- include('partials/footer')%>
+
+</footer>
+
 <script type="text/javascript">
 
   // Loading jQuery
@@ -152,7 +157,7 @@ let cartItemHTML =
                 <i class="fas fa-minus"></i>
               </button>
               <span class="cart-total-price">${price}$</span>
-              <span class="quantity-times-price">${price}</span>
+              <span class="quantity-times-price">${price}<i class="fas fa-dollar-sign"></i></span>
             </div>
           </div>
         </section>`
