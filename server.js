@@ -10,6 +10,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 const bcrypt = require("bcrypt");
+const notifyOrderRecieved = require("./twilioSMS");
 
 //////// TWILIO ----------
 
@@ -163,6 +164,8 @@ app.get('/checkout', (req, res) => {
     res.render("checkout", templateVars);
   })
 });
+
+notifyOrderRecieved(app);
 
 app.post("/logout", (req, res) => {
   res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
