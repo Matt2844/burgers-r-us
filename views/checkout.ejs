@@ -148,16 +148,17 @@
       dataIndex++;
       let title = cart_now[i].title;
       let priceStr = cart_now[i].price;
-      let price = priceStr
+      let price = priceStr;
       let description = JSON.stringify(cart_now[i].description);
-      console.log(title);
+      let imgSrc = cart_now[i].imgSrc;
+
       let cartItemHTML =
         `<div id="order-item">
       <div class="remove-item">
         <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
       </div>
       <div class="item-img">
-        <img src="./docs/burger1.png" style="width:150px;height:150px">
+        <img src="${imgSrc}" style="width:150px;height:150px">
       </div>
       <div class="item-details">
         <a class="cart-item-name">${title}
@@ -172,8 +173,8 @@
           <button class="food-item-btn" id="minus-btn-${minusBtn}" type="button" data-index="${dataIndex}" data-inc="-1" name="button">
             <i class="fas fa-minus"></i>
           </button>
-          <span class="cart-total-price">${price}$</span>
-          <span class="quantity-times-price" style="font-size:1px;">${price}</span>
+          <span class="cart-total-price" style="font-size:1px;visibility:hidden">${price}$</span>
+          <span class="quantity-times-price" style="font-size:20px;visibility:visible;">${price}<i>$</i></span>
         </div>
       </div>
     </div>`
@@ -241,7 +242,7 @@
         // Adding up the subtotals and inserting it into a placeholder
         quantityTimesPrice = (val * thisPriceNum);
         console.log(quantityTimesPrice.toFixed(2))
-        thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
+        thisItemSubtotal.html(quantityTimesPrice.toFixed(2) + '$');
         // Calling the subtotal function so that it updates with each change in the quantity.
         $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
         // Calling the taxes function so that it updates with each change in the quantity.
