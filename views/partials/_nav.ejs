@@ -19,56 +19,60 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
 </head>
-
-<nav class="nav-container">
-  <header>
-    <div id="logo">
-      <img class="logo-img" src="../docs/logo_burgersrus.png" style="width:100px;height:70px">
-      <a href="/"><h1>Burgers-R-Us</h1></a>
-    </div>
-      <% if(user){ %>
-        <div class="welcome-name"><%=message%></div>
-      <% } %>
-  </header>
-
-  <div class="list-action">
-    <div class="login-link">
-      <% if(!user){ %>
-      <div id="login">
-        <a id="login-trigger" href="#">Log in <span>▼</span></a>
-        <div id="login-content">
-          <form id="login-visible" class="form-control login" action="/login" method="POST">
-            <fieldset id="inputs">
-              <input class="form-control" name="email" type="email" placeholder="Email Address" required>
-              <input class="form-control" name="password" type="password" placeholder="Password" required>
-            </fieldset>
-            <fieldset id="actions">
-              <input type="submit" id="submit" value="Log in">
-            </fieldset>
+<nav class="total-nav">
+  <div class="nav-container">
+    <header>
+      <div id="logo">
+        <img class="logo-img" src="../docs/logo_burgersrus.png" style="width:100px;height:70px">
+        <a href="/"><h1>Burgers-R-Us</h1></a>
+      </div>
+    </header>
+    <div class="list-action">
+      <div class="login-link">
+        <% if(!user){ %>
+        <div id="login">
+          <a id="login-trigger" href="#">Log in <span>▼</span></a>
+          <div id="login-content">
+            <form id="login-visible" class="form-control login" action="/login" method="POST">
+              <fieldset id="inputs">
+                <input class="form-control" name="email" type="email" placeholder="Email Address" required>
+                <input class="form-control" name="password" type="password" placeholder="Password" required>
+              </fieldset>
+              <fieldset id="actions">
+                <input type="submit" id="submit" value="Log in">
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="register-link" >
+        <a href="/register">Register</a>
+        <i class="fas fa-hamburger fa-2x"></i>
+      </div>
+      <% } else { %>
+      <div class="login-state">
+        <div class="checkout-link">
+          <i class="fas fa-shopping-cart fa-2x"></i>
+          <a href="/checkout">Checkout</a>
+        </div>
+        <div class="logout">
+          <form class="checkout-link" action="/logout"method="POST">
+            <button type="submit" class="btn btn-primary">logout</button>
+          <i class="fas fa-sign-out-alt fa-2x"></i>
           </form>
         </div>
       </div>
+      <% } %>
     </div>
-    <div class="register-link" >
-      <a href="/register">Register</a>
-      <i class="fas fa-hamburger fa-2x"></i>
-    </div>
-    <% } else { %>
-    <div class="login-state">
-      <div class="checkout-link">
-        <i class="fas fa-shopping-cart fa-2x"></i>
-        <a href="/checkout">Checkout</a>
-      </div>
-      <div class="logout">
-        <form class="checkout-link" action="/logout"method="POST">
-          <button type="submit" class="btn btn-primary">logout</button>
-        <i class="fas fa-sign-out-alt fa-2x"></i>
-        </form>
-      </div>
+  </div>
+</div>
+  <div class = "welcome-name">
+  <% if(user){ %>
+      <h4><%=message%></h4>
     </div>
     <% } %>
-  </div>
-</nav>
+  </nav>
+
 
 <script>
 
