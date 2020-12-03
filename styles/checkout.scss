@@ -18,12 +18,15 @@ body {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 350px;
+  height:80%;
+  height: 400px;
   background-size: cover;
   background-repeat: no-repeat;
     .page-title{
+      text-shadow: 3px 3px black;
+      padding: 20px;
       color: $primary-color;
-      background-color: white;
+      background-color: transparent;
       margin: 140px;
       font-size: 300%;
       border: 1px solid $primary-color;
@@ -46,7 +49,7 @@ body {
     color: $primary-color;
     display: flex;
     justify-content: center;
-    font-size: 400%;
+    font-size: 50px;
     border: 1px solid cornsilk;
     font-family: $text;
     font-weight: 800;
@@ -96,14 +99,12 @@ body {
       font-family: $title-text;
       font-size: 28px;
       color: black;
-      &:hover {
-        .temporary-styling {
-          font-family: $text;
-          color: $primary-color;
-          visibility: visible;
-        }
-      }
     }
+    .temporary-styling {
+      font-family: $text;
+      margin: 20px;
+      text-align: center;
+  }
   }
 
     .quantity{
@@ -129,6 +130,7 @@ body {
       }
       .cart-total-price {
         visibility: hidden;
+        font-size: 0.2px;
       }
 
       .quantity-times-price {
@@ -177,7 +179,7 @@ body {
     margin:20px;
     display: flex;
     flex-direction: column;
-    margin: 20px 350px;
+    margin: 20px 350px 150px;
     border: 2px solid $primary-color;
 
 
