@@ -8,7 +8,7 @@ $(document).ready(function() {
   let cart = []
 
 
-  // Changes the food item title to pink and mostly for testing purposes
+  // Changes the food item title to pink and can be used for testing purpose
   const clickTesting = function() {
 
     $('.add-cart').click(function() {
@@ -17,6 +17,9 @@ $(document).ready(function() {
       let title = buttonDiv.find(".item-title");
       let colorfulTitle = title.css("color", "pink");
       colorfulTitle;
+      // let imgDiv = $(this).parent().parent();
+      // itemDiv.css("background-color", "green");
+
     })
   };
 
@@ -28,15 +31,17 @@ $(document).ready(function() {
       let title = buttonDiv.find(".item-title").html();
       let price = buttonDiv.find(".item-price").html();
       let description = buttonDiv.find(".item-description").html();
+      let imgDiv = $(this).parent().parent();
+      let imgSrc = imgDiv.find(".product-img").attr('src');
 
-      addItemToCart(title, price, description);
+      addItemToCart(title, price, description, imgSrc);
     })
   };
 
 
-  const addItemToCart = function(title, price, description) {
+  const addItemToCart = function(title, price, description, imgSrc) {
 
-    cart.push({ title, price, description })
+    cart.push({ title, price, description, imgSrc })
     localStorage.setItem('cart', JSON.stringify(cart))
   }
 
