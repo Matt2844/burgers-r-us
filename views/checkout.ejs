@@ -190,16 +190,6 @@
       $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
     }
 
-    // Removing an item by clicking on the garbage bin
-    $(document).on('click', '.detele-btn', function() {
-      let thisItem = $(this).parent().parent();
-      let quantityNum = thisItem.find('.quantity-times-price');
-      quantityNum.html(0)
-      updateSubtotal();
-      thisItem.remove();
-    });
-
-
     // Calculating the taxes (14.975%) and placing them into the HTML
     const getTaxes = function() {
       let subTotal = $('#cart-subtotal').html();
@@ -216,6 +206,17 @@
       $('#cart-total').html(grandTotal.toFixed(2) + '$');
     }
     getGrandTotal();
+
+    // Removing an item by clicking on the garbage bin
+    $(document).on('click', '.detele-btn', function() {
+      let thisItem = $(this).parent().parent();
+      let quantityNum = thisItem.find('.quantity-times-price');
+      quantityNum.html(0)
+      updateSubtotal();
+      getTaxes();
+      getGrandTotal();
+      thisItem.remove();
+    });
 
     // When the quantity button is clicked to add OR subtract item
     $('.food-item-btn').click(function() {
@@ -265,10 +266,15 @@
   var span = document.getElementsByClassName("close")[0];
   // When the user clicks on the button, open the modal
   btn.onclick = function() {
-    modal.style.display = "block";
-    return $.post("/order", {}).then(function() {
-      console.log("order received");
-    });
+    if (document.getElementById('cart-total').innerHTML === '0.00$') {
+      alert('Please order a food item before checking out');
+      return;
+    } else {
+      modal.style.display = "block";
+      return $.post("/order", {}).then(function() {
+        console.log("order received");
+      });
+    };
   };
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
