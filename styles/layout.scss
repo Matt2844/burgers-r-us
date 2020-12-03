@@ -11,52 +11,57 @@ $break-large: 1200px;
 
 body {
   background-color: white;
-	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  height: 3000px;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  height: 2000px;
 
 }
 
 
-.nav-container {
+.total-nav {
   background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/food.png");
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 5px;
   position: fixed;
   top: 0;
   width: 100%;
+  height: 160px;
 }
-
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
   #logo {
     display:flex;
     align-items: center;
   }
 
   #logo .logo-img {
-    width: 30vw;
-    height: 20vw;
+    width: 80px;
+    height: 60px;
     margin: 30px 0px 0px 20px;
   }
 
   #logo h1 {
-    font-size: 4vw;;
-    text-align: center;
+    font-size: 40px;;
     color: black;
     margin: 30px 0px 0px 10px;
     font-family: $title-text;
+    text-decoration: underline 2px black;
     text-decoration: none;
   }
 
+  #logo a {
+    text-decoration-color: black;
+  }
 
   .welcome-name {
-    font-size: 20px;
-    margin-left: 250px;
+    font-size: 16px;
+    margin-left: 50px;
     color: black;
     font-family: monospace;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     letter-spacing: .15em; /* Adjust as needed */
     animation:
@@ -78,9 +83,6 @@ body {
 
 
 
-  Resources
-
-
   .menu-container {
     text-align: center;
     border: 1px solid black;
@@ -91,7 +93,7 @@ body {
     align-items: center;
     margin-top: 0px;
     font-family: $text;
-    font-size: 24px;
+    font-size: 20px;
     color: #000000;
     text-decoration: none;
   }
@@ -140,7 +142,7 @@ body {
         text-decoration: underline black;
         background-color: transparent;
         border:none;
-        margin-right: 20px;
+        margin-right: 10px;
       }
       i {
         visibility: hidden;
@@ -194,6 +196,7 @@ body {
     border-radius: 3px 0 3px 3px;
     visibility: hidden;
     display:none;
+    margin-right: 20px;
   }
 
 
