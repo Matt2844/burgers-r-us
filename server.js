@@ -92,7 +92,11 @@ app.get("/", (req, res) => {
           `Ask us about our family combos ${response.name} 👨‍👨‍👦‍👦👩‍👩‍👧‍👧👨‍👩‍👦 and we won't ask why you're eating it by yourself 🤭`,
           `Is this your first order ${response.name}? Make it a big one so you know what you prefer next time🍔🍟🍔`,
           `${response.name} come and meet our clown mascot! We were legally obligated to keep him off our website.😥🤡`,
-          `${response.name} you'll love our food! Tons of Ham and zero burglars 😎`
+          `${response.name} you'll love our food! Tons of Ham and zero burglars 😎`,
+          `YO ${response.name} ! it's BURGER O'CLOCK ! ⏰ `,
+          `Hey ${response.name}! Just so you know.. you deserve that burger 😉 ! `,
+          `Welcome back ${response.name}! HAPPY FRY DAY 😍`,
+          `${response.name}, you are the bacon to my burger 🥰 `,
         ])
       }
       res.render("index", templateVars);
