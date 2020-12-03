@@ -9,8 +9,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
-    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
-    <script src="/Scripts/bootstrap.min.js"></script>
+  <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+  <script src="/Scripts/bootstrap.min.js"></script>
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -136,9 +136,9 @@
       let price = priceStr;
       let description = JSON.stringify(cart_now[i].description);
       let imgSrc = cart_now[i].imgSrc;
-// <a class="cart-item-name">${title}</a>
-let cartItemHTML =
-`<sectuib id="order-item">
+      // <a class="cart-item-name">${title}</a>
+      let cartItemHTML =
+        `<sectuib id="order-item">
   <div class="remove-item">
     <button class="detele-btn" type="button" name="delete"><i class="far fa-trash-alt fa-2x"></i></button>
     </div>
@@ -184,6 +184,22 @@ let cartItemHTML =
 
     // Calling the getTotal function so that the price loads when the page is loaded
     $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+
+    // This runs when the garbage bin is clicked to update the subtotals
+    const updateSubtotal = function() {
+      $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+    }
+
+    // Removing an item by clicking on the garbage bin
+    $(document).on('click', '.detele-btn', function() {
+      let thisItem = $(this).parent().parent();
+      let quantityNum = thisItem.find('.quantity-times-price');
+      quantityNum.html(0)
+      updateSubtotal();
+      thisItem.remove();
+    });
+
+
     // Calculating the taxes (14.975%) and placing them into the HTML
     const getTaxes = function() {
       let subTotal = $('#cart-subtotal').html();
@@ -203,14 +219,12 @@ let cartItemHTML =
 
     // When the quantity button is clicked to add OR subtract item
     $('.food-item-btn').click(function() {
-
       // Selecting the item price and removing the dollar sign
       let quantityTimesPrice = 0;
       let buttonDiv = $(this).parent();
       let thisPrice = buttonDiv.find(".cart-total-price").text();
       let rmvDollarSign = thisPrice.slice(0, -1);
       let thisPriceNum = Number(rmvDollarSign);
-
       // Get the specific subtotal for that specific item
       let thisItemSubtotal = buttonDiv.find(".quantity-times-price");
 
