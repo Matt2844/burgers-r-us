@@ -125,8 +125,6 @@
     // The stored food cart items from the menu page
     let cart_now = JSON.parse(localStorage.getItem('cart'))
 
-
-
     // Counter to assign unique class names to the OUTPUT of plus/minus buttons
     let btnNumId = 0;
     // Counter to assign unique class names to the plus buttons
@@ -189,7 +187,7 @@
 
     console.log('end of items');
 
-    // The subtotal
+    // Calculating the subtotal
     let getTotal = function() {
       var total = 0;
       $('.quantity-times-price').each(function() {
@@ -200,8 +198,24 @@
       return total;
     }
 
-    // Calling the get subtotal function so that the price loads when the page is loaded
+    // Calling the getTotal function so that the price loads when the page is loaded
     $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+
+    // Calculating the taxes (14.975%) and placing them into the HTML
+    const getTaxes = function() {
+      let subTotal = $('#cart-subtotal').html();
+      let taxes = subTotal.slice(0, -1) * 0.14975
+      $('#cart-tax').html(taxes.toFixed(2) + '$');
+    }
+    getTaxes();
+
+    const getGrandTotal = function() {
+      let sub = Number(($('#cart-tax').html().slice(0, -1)));
+      let tax = Number(($('#cart-subtotal').html().slice(0, -1)));
+      let grandTotal = sub + tax;
+      $('#cart-total').html(grandTotal.toFixed(2) + '$');
+    }
+    getGrandTotal();
 
     // When the quantity button is clicked to add OR subtract item
     $('.food-item-btn').click(function() {
@@ -232,13 +246,16 @@
         console.log(quantityTimesPrice.toFixed(2))
         thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
 
-        // Calling the subtotal function so that it updates with each change in the quanitity.
+        // Calling the subtotal function so that it updates with each change in the quantity.
         $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+        // Calling the taxes function so that it updates with each change in the quantity.
+        getTaxes();
+        // Calling the grand total function so that it updates with each change in the quantity.
+        getGrandTotal();
 
         return val;
       });
 
-      // Calculate the tax
 
 
     });
