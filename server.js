@@ -10,6 +10,11 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 const bcrypt = require("bcrypt");
+const notifyOrderRecieved = require("./twilioSMS");
+
+//////// TWILIO ----------
+
+
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -37,7 +42,7 @@ app.use(
 );
 
 /////////////IMPORT FOR FUNCTIONS IN DATABASE.js
-const {getUserWithEmail, getUserWithId, productsObj } = require('./database')
+const {getUserWithEmail, getUserWithId, productsObj, randomizer } = require('./database')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -67,16 +72,33 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 
+const errorMessage = [
+  "Invalid Login Credentials, please check your information and try again",
+  "You don't have an account, you need to register",
+  "You're already a member! please log in.🍔 "
+]
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  console.log(req.session.user_id)
   getUserWithId(req.session.user_id).then((response) => {
-    console.log("THIS IS IN THE GET / ROUTE", response)
-    const templateVars = { user: response,
-      ArrObj: productsObj}
-    res.render("index", templateVars);
+    if (response) {
+      const templateVars = {
+        user: response,
+        ArrObj: productsObj,
+        message: randomizer([
+          `Hi ${response.name}! What can we get you today?`,
+          `Are you starving ${response.name}? Maybe you should try our Burger Tower`,
+          `How about we get you started with a few (or many) apetizers ${response.name}?`,
+          `AAAAHHHHHHH!!!!!!!!! Do I have your attention ${response.name}? ok, order more!`
+        ])
+      }
+      res.render("index", templateVars);
+    } else {
+      const templateVars = {user: response, ArrObj: productsObj}
+      res.render("index", templateVars);
+    }
   })
 });
 
@@ -88,17 +110,17 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/invalidLogin', (req, res) => {
-  const templateVars = {user: null , message: "Invalid Login Credentials, please check your information and try again"}
+  const templateVars = {user: null , message: errorMessage[0]}
   res.render("registerFailed", templateVars);
 });
 
 app.get('/accountMissing', (req, res) => {
-  const templateVars = {user: null , message: "You don't have an account, you need to register"}
+  const templateVars = {user: null , message: errorMessage[1]}
   res.render("registerFailed", templateVars);
 });
 
 app.get('/registerFailed', (req, res) => {
-  const templateVars = {user: null , message: "You're already a member! please log in.🍔 "}
+  const templateVars = {user: null , message: errorMessage[2]}
   res.render("registerFailed", templateVars);
 });
 
@@ -138,10 +160,12 @@ app.post('/login', (req, res) => {
 app.get('/checkout', (req, res) => {
   getUserWithId(req.session.user_id).then((response) => {
     const templateVars = { user: response,
-      ArrObj: productsObj}
+      ArrObj: productsObj, message:"Almost there !! "}
     res.render("checkout", templateVars);
   })
 });
+
+notifyOrderRecieved(app);
 
 app.post("/logout", (req, res) => {
   res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name
