@@ -10,7 +10,6 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 const bcrypt = require("bcrypt");
-const notifyOrderRecieved = require("./twilioSMS");
 
 //////// TWILIO ----------
 
@@ -64,6 +63,7 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const nodemon = require('nodemon');
+const textNotification = require('./twilioSMS');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -165,7 +165,7 @@ app.get('/checkout', (req, res) => {
   })
 });
 
-notifyOrderRecieved(app);
+textNotification(app);
 
 app.post("/logout", (req, res) => {
   res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name

@@ -1,9 +1,10 @@
-const accountSid = 'AC32c900fca67e78da0d8065c48f1b90b8'; // Your Account SID from www.twilio.com/console
-const authToken = '3ef125be26316759315f25bcd4754902';   // Your Auth Token from www.twilio.com/console
+require('dotenv').config();
+const accountSid = process.env.Twilio_SID; // Your Account SID from www.twilio.com/console
+const authToken = process.env.Twilio_token;  // Your Auth Token from www.twilio.com/console
 const twilio = require('twilio');
 const client = new twilio(accountSid, authToken);
 
-const notifyOrderRecieved = function(app) {
+const textNotification = function(app) {
   app.post("/order", function({body}, res) {
     client.messages.create({
      body: 'Hi user.name, Burgers-R-Us here! We received your order and you can come pick it up in 20min. See you soon!',
@@ -13,4 +14,4 @@ const notifyOrderRecieved = function(app) {
   });
 };
 
-module.exports = notifyOrderRecieved;
+module.exports = textNotification;
