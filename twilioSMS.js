@@ -7,7 +7,7 @@ const client = new twilio(accountSid, authToken);
 const textNotification = function(app) {
   app.post("/order", function({body}, res) {
     client.messages.create({
-     body: 'Hi user.name, Burgers-R-Us here! We received your order and you can come pick it up in 20min. See you soon!',
+     body: 'Hi Ariel, Burgers-R-Us here! We received your order and you can come pick it up in 20min. See you soon!',
      from: '+14052419824',
      to: '+1514-531-4732'
    }).then(message => console.log(message.sid));

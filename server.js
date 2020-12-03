@@ -23,10 +23,10 @@ db.connect();
 
 ////////////POOL ADDED TO ACCESS DB-------------------------
 const pool = new Pool({
-  user: "labber",
-  password: "labber",
-  host: "localhost",
-  database: "midterm",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
 });
 
 ////////COOKIE SESSIONS
@@ -88,10 +88,11 @@ app.get("/", (req, res) => {
         user: response,
         ArrObj: productsObj,
         message: randomizer([
-          `Hi ${response.name}! What can we get you today?`,
-          `Are you starving ${response.name}? Maybe you should try our Burger Tower`,
-          `How about we get you started with a few (or many) apetizers ${response.name}?`,
-          `AAAAHHHHHHH!!!!!!!!! Do I have your attention ${response.name}? ok, order more!`
+          `Are you starving ${response.name}? Maybe you should try our Burger Tower 🍔🗼🍔`,
+          `Ask us about our family combos ${response.name} 👨‍👨‍👦‍👦👩‍👩‍👧‍👧👨‍👩‍👦 and we won't ask why you're eating it by yourself 🤭`,
+          `Is this your first order ${response.name}? Make it a big one so you know what you prefer next time🍔🍟🍔`,
+          `${response.name} come and meet our clown mascot! We were legally obligated to keep him off our website.😥🤡`,
+          `${response.name} you'll love our food! Tons of Ham and zero burglars 😎`
         ])
       }
       res.render("index", templateVars);

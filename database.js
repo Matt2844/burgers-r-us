@@ -253,8 +253,8 @@ const getUserWithId = (ID) => {
 };
 
 function randomizer(Arr) {
-  console.log(Math.floor(Math.random() * Math.floor(3)));
-  return Arr[Math.floor(Math.random() * Math.floor(3))];
+  console.log(Math.floor(Math.random() * Math.floor(4)));
+  return Arr[Math.floor(Math.random() * Math.floor(4))];
 }
 
 module.exports = {
