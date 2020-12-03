@@ -60,9 +60,7 @@
           </div>
           <div class="item-details">
             <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
-
-        Jack. Also served without mushrooms for people with working taste buds">
-              Burger Template
+        Jack. Also served without mushrooms for people with working taste buds">Burger Template
             </button>
             <div class="quantity">
               <button class="plus-btn" type="button" name="button">
@@ -74,9 +72,6 @@
                 <i class="fas fa-minus"></i>
               </button>
               <span class="cart-total-price">0.00$</span>
-
-
-              <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
             </div>
           </div>
         </div>
@@ -85,7 +80,6 @@
 
 
 
-    <!-- <input class="price" type="text" name="price"> -->
   </div>
   </div>
   </div>
@@ -106,7 +100,31 @@
 
   <section class="confirm-order">
     <div>
-      <button class="order-button">Confirm Order</button>
+
+ <button class="order-button">Confirm Order</button>
+
+
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn" class="order-button">Confirm Order</button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Thank you <%= user.name %> for odering at BURGERS-R-US !</h2>
+            <div class="order-message">
+              <p>We sent an SMS to <%= user.phone_number %></p>
+              <p>Check your phone to know when to swingby to our takeaway counter</p>
+              <P>and pick up your delicious food !</p>
+                <div class="typewritter">
+                  <h3>Bon appetit !</h3>
+                </div>
+            </div>
+          <img class="logo-img" src="./docs/logo_burgersrus.png">
+          </div>
+      </div>
     </div>
   </section>
 
