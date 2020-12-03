@@ -1,0 +1,50 @@
+$title-text: 'lobster', cursive;
+$text: 'Montserrat', sans-serif;
+$primary-color: #b8860b;
+
+* {
+  box-sizing: border-box
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: $text;
+  background-color: white;
+  bottom: 0;
+}
+ul li {
+  list-style: none;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-list-header {
+  letter-spacing: 0.20em;
+}
+
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  margin-left: 90px;
+}
+
+.footer-social-section {
+  display: flex;
+  justify-content: center;
+  letter-spacing: .20em;
+  font-size: 18px;
+  margin-top: 60px;
+  color: $primary-color;
+  font-weight: 700;
+}
+
+.footer-last {
+  display: flex;
+  margin-bottom: 10px;
+}
