@@ -125,6 +125,8 @@
     // The stored food cart items from the menu page
     let cart_now = JSON.parse(localStorage.getItem('cart'))
 
+
+
     // Counter to assign unique class names to the OUTPUT of plus/minus buttons
     let btnNumId = 0;
     // Counter to assign unique class names to the plus buttons
@@ -187,6 +189,20 @@
 
     console.log('end of items');
 
+    // The subtotal
+    let getTotal = function() {
+      var total = 0;
+      $('.quantity-times-price').each(function() {
+        let addToSubtotal = parseFloat($(this).html());
+        total += addToSubtotal
+        total
+      });
+      return total;
+    }
+
+    // Calling the get subtotal function so that the price loads when the page is loaded
+    $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+
     // When the quantity button is clicked to add OR subtract item
     $('.food-item-btn').click(function() {
 
@@ -214,21 +230,26 @@
         // Adding up the subtotals and inserting it into a placeholder
         quantityTimesPrice = (val * thisPriceNum);
         console.log(quantityTimesPrice.toFixed(2))
-        let mouthful = thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
-        let htmlPlaceholder = mouthful;
-        htmlPlaceholder;
+        thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
 
-        // Get the sum and update it
-        for (let itemTotal of htmlPlaceholder.html()) {
-          console.log('testing');
-        }
-
-
+        // Calling the subtotal function so that it updates with each change in the quanitity.
+        $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
 
         return val;
       });
+
+      // Calculate the tax
+
+
     });
-  });
+
+
+
+  }); // End of jQuery  "Document Ready".
+
+
+
+
 
 
 </script>
