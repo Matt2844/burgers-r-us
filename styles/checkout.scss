@@ -37,8 +37,9 @@ body {
   display: flex;
   flex-direction: column;
   border: 3px solid $primary-color;
-  margin: 8%;
+  margin: 8% 8% 0 8%;
   background-color:white;
+  border-bottom: 6px double $primary-color;
 
 
   .title {
@@ -78,10 +79,10 @@ body {
     transform: scale(1.3);
     outline: none;
   }
-  .item-image {
-    border-radius: 50%;
-  }
 }
+    .item-img {
+      margin: 20px;
+    }
 
 
   .item-details {
@@ -90,39 +91,35 @@ body {
     align-items: center;
     margin:15px;
     width: 70%;
-    .btn {
-      background-color: transparent;
-      border: 1px solid black;
+    .cart-item-name {
+      flex-grow:1;
       font-family: $title-text;
       font-size: 28px;
-      width: 40%;
+      color: black;
+      &:hover {
+        .temporary-styling {
+          font-family: $text;
+          color: $primary-color;
+          visibility: visible;
+        }
+      }
     }
+  }
 
     .quantity{
+      flex-grow:1;
       display: flex;
       align-items: baseline;
-      justify-content: space-around;
-      width:50%;
-      .number-item {
-        padding:10px;
-        border-radius: 10px;
+      justify-content: flex-end;
+      .food-item-btn {
+        padding: 10px;
         text-align: center;
-        width:15%;
+        width: 15%;
         border: none;
-        background-color: transparent;
-        font-size: 24px;
+        font-size: 18px;
         font-weight: bold;
-        font-family: $text;
-      }
-      .plus-btn {
-        width: 40px;
-        height: 40px;
-        background-color: #f7bd8d;
-        border-radius: 6px;
-        border: none;
-        cursor: pointer;
-      }
-      .minus-btn{
+        font-family: "Montserrat", sans-serif;
+        margin: 20px;
         width: 40px;
         height: 40px;
         background-color: #f7bd8d;
@@ -131,6 +128,10 @@ body {
         cursor: pointer;
       }
       .cart-total-price {
+        visibility: hidden;
+      }
+
+      .quantity-times-price {
         display: flex;
         align-items: center;
         justify-content: flex-end;
@@ -138,53 +139,21 @@ body {
         font-size: 24px;
         font-weight: bold;
         font-family: $text;
-
-        // .price {
-        //   overflow: hidden;
-        //   padding:10px;
-        //   border-radius: 5px;
-        //   text-align: center;
-        //   width:30%;
-        //   background-color: transparent;
-        //   font-size: 24px;
-        //   font-weight: bold;
-        //   margin: 20px;
-        //   border:none;
-        // }
-
       }
-
     }
   }
 
-}
 
-.tooltip-inner {
-  height: 76px;
-  font-size: 20px;
-  padding: 10px;
-  background: $primary-color;
-  font-family: $text;
-  border: 1px solid black;
-  text-align: center;
-  width: 60%;
-  float: right;
-  overflow: scroll;
-  border-radius: 10px;
-}
 
 
 #confirmation {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  border-top: 6px double $primary-color;
+  margin-right: 17%;
 
   .total {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    font-size: 20px;
+    font-size: 24px;
     font-family: $text;
     margin: 0px 30px 0px 0px;
 
@@ -208,7 +177,7 @@ body {
     margin:20px;
     display: flex;
     flex-direction: column;
-    margin: 80px;
+    margin: 20px 350px;
     border: 2px solid $primary-color;
 
 
