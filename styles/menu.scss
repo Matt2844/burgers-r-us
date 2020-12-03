@@ -16,6 +16,8 @@ body {
   margin-top: 130px;
   flex-direction: column;
   width: 100%;
+  height: 450px;
+  background-position: center;
   background-size: cover;
 	.page-title {
     color: cornsilk;
@@ -36,6 +38,7 @@ body {
     font-variant: small-caps;
   }
 }
+
 .main-content {
 	background-color: white;
 	background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
@@ -55,78 +58,78 @@ body {
 	display: flex;
   flex-direction: column;
   border: 3px solid $primary-color;
+  h2 {
+    border-bottom: 1px solid $primary-color;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: $primary-color;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+  }
 	.item {
     display: flex;
     padding:10px;
     overflow: auto;
-	}
-	h2 {
-    border-bottom: 1px solid $primary-color;
-		font-family: sans-serif;
-		font-weight: bold;
-		color: $primary-color;
-		font-size: 1.5rem;
-		display: flex;
-    justify-content: center;
-    margin: 15px;
+    .product-img {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      margin: 40px;
+      align-items: center;
+    }
+    .detail {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      padding:10px;
+      width: 80%;
+      .item-header {
+        display: flex;
+        align-items: baseline;
+        .item-title {
+          font-family: 'Lobster', cursive;
+          font-size: 28px;
+          font-weight: 600;
+          margin: 20px 20px 20px 20px;
+        }
+        .item-dot {
+          flex: 1;
+          border-bottom: 1px dashed #aaa;
+          margin: 0 15px;
+        }
+        .item-price {
+          font-family: fantasy;
+          font-size: 25px;
+          font-weight: 400;
+          margin: 0% 5% 0% 5%;
+        }
+      }
+      .item-description {
+        font-family: 'Montserrat', sans-serif;
+        font-size: large;
+        margin: 0px 20px 0px 20px;
+      }
+      .add-cart {
+        display: inline-block;
+        padding: 0.35em 1.2em;
+        border: 0.1em solid #b8860b;
+        background-color: transparent;
+        box-sizing: border-box;
+        font-family: 'Roboto',sans-serif;
+        font-weight: 300;
+        color: #b8860b;
+        text-align: center;
+        transition: all 0.2s;
+        margin: 2% 70% 2% 2%;
+        &:hover {
+          color: #000000;
+          background-color: lightgoldenrodyellow;
+          transform: scale(1.1);
+        }
+      }
+    }
   }
-  .product-img {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    margin: 40px;
-    align-items: center;
-  }
-
-	.detail {
-		display: flex;
-    flex-direction: column;
-    margin: 10px;
-    padding:10px;
-    width: 80%
-	}
-	.item-header {
-		display: flex;
-		align-items: baseline;
-	}
-	.item-title {
-		font-family: 'Lobster', cursive;
-    font-size: 28px;
-    font-weight: 600;
-		margin: 20px 20px 20px 20px;
-  }
-  .item-dot {
-    flex: 1;
-    border-bottom: 1px dashed #aaa;
-    margin: 0 15px;
-  }
-	.item-price {
-		font-family: fantasy;
-    font-size: 25px;
-    font-weight: 400;
-    margin: 0% 5% 0% 5%;
-  }
-	.item-description {
-		font-family: 'Montserrat', sans-serif;
-		font-size: large;
-		margin: 0px 20px 0px 20px;
-	}
-	.add-cart {
-    display: inline-block;
-    padding: 0.35em 1.2em;
-    border: 0.1em solid #b8860b;
-    background-color: transparent;
-    box-sizing: border-box;
-    font-family: 'Roboto',sans-serif;
-    font-weight: 300;
-    color: #b8860b;
-    text-align: center;
-    transition: all 0.2s;
-    margin: 2% 70% 2% 2%;
-		&:hover {
-			color: #000000;
-      background-color: lightgoldenrodyellow;
-      transform: scale(1.1);
-		}
-	}
 }
+

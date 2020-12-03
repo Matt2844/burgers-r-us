@@ -13,38 +13,34 @@ body {
   margin-top: 77px;
   font-family: $text;
 }
-
 .bkg-image {
   display: flex;
   justify-content: center;
   width: 100%;
-  height:80%;
   height: 400px;
   background-size: cover;
   background-repeat: no-repeat;
-    .page-title{
-      text-shadow: 3px 3px black;
-      padding: 20px;
-      color: $primary-color;
-      background-color: transparent;
-      margin: 140px;
-      font-size: 300%;
-      border: 1px solid $primary-color;
-      display: flex;
-      align-items: center;
-
-      }
+  background-position: center;
+  .page-title {
+    text-shadow: 3px 3px black;
+    padding: 20px;
+    color: $primary-color;
+    background-color: transparent;
+    margin: 140px;
+    font-size: 300%;
+    border: 1px solid $primary-color;
+    display: flex;
+    align-items: center;
+  }
 }
-
+// SHOPPING CART
 #shopping-cart {
   display: flex;
   flex-direction: column;
   border: 3px solid $primary-color;
-  margin: 8% 8% 0 8%;
+  margin: 8% 15% 0 15%;
   background-color:white;
   border-bottom: 6px double $primary-color;
-
-
   .title {
     color: $primary-color;
     display: flex;
@@ -56,19 +52,17 @@ body {
     margin: 50px 0px 0px 0px;
     padding-bottom:50px;
     border-bottom: 1px solid $primary-color
-
+  }
+  .all-items {
+    display: flex;
+    flex-direction: column;
   }
 }
-.all-items {
-  display: flex;
-  flex-direction: column;
-}
-
+// EACH ITEM
 #order-item {
   display: flex;
   align-items: center;
   border-bottom: 1px solid $primary-color;
-
   .remove-item {
     margin:30px;
     button {
@@ -81,13 +75,11 @@ body {
     box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
     transform: scale(1.3);
     outline: none;
-  }
-}
-    .item-img {
-      margin: 20px;
     }
-
-
+  }
+  .item-img {
+    margin: 20px;
+  }
   .item-details {
     display: flex;
     justify-content: space-between;
@@ -104,10 +96,8 @@ body {
       font-family: $text;
       margin: 20px;
       text-align: center;
-  }
-  }
-
-    .quantity{
+    }
+    .quantity {
       flex-grow:1;
       display: flex;
       align-items: baseline;
@@ -119,7 +109,7 @@ body {
         border: none;
         font-size: 18px;
         font-weight: bold;
-        font-family: "Montserrat", sans-serif;
+        font-family: $text;
         margin: 20px;
         width: 40px;
         height: 40px;
@@ -132,7 +122,6 @@ body {
         visibility: hidden;
         font-size: 0.2px;
       }
-
       .quantity-times-price {
         display: flex;
         align-items: center;
@@ -144,13 +133,10 @@ body {
       }
     }
   }
-
-
-
-
+}
+// TOTAL PRICE CALCULS
 #confirmation {
   margin-right: 17%;
-
   .total {
     display: flex;
     flex-direction: column;
@@ -158,15 +144,11 @@ body {
     font-size: 24px;
     font-family: $text;
     margin: 0px 30px 0px 0px;
-
-
-
     .total-item {
       display: flex;
       flex-direction: row;
       align-items: baseline;
     }
-
     .total-value {
       align-items: baseline;
       margin:20px;
@@ -174,40 +156,32 @@ body {
     }
   }
 }
-
-  .confirm-order {
-    margin:20px;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 350px 150px;
-    border: 2px solid $primary-color;
-
-
-
-    .order-button {
-      width: 100%;
-      height: 50px;
-      box-sizing: border-box;
-      background-color: white;
-
-      font-size: 24px;
-      font-family: $title-text;
-
-      border: 1px solid rgba(#ffb3c9, 0.3);
-      box-shadow: 0 2px 2px rgba(#ffb3c9, 0.1);
-      border-radius: 4px;
-
-      transition: background 0.1s, color 0.1s, border-color 0.1s;
-
-      &:hover {
-        background: darken(#ffb3c9 , 10%);
-        color: white;
-        border-color: transparent;
-      }
+// CONFIRMATION OF ORDER
+.confirm-order {
+  margin:20px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 350px 150px;
+  border: 2px solid $primary-color;
+  .order-button {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: white;
+    font-size: 24px;
+    font-family: $title-text;
+    border: 1px solid rgba(#ffb3c9, 0.3);
+    box-shadow: 0 2px 2px rgba(#ffb3c9, 0.1);
+    border-radius: 4px;
+    transition: background 0.1s, color 0.1s, border-color 0.1s;
+    &:hover {
+      background: darken(#ffb3c9 , 10%);
+      color: white;
+      border-color: transparent;
     }
   }
-
-/* The Modal (background) */
+}
+// MODAL
 .modal {
   display: none;
   position: fixed;
@@ -217,11 +191,9 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-
   background-color: rgba(0,0,0,0.4);
 }
-
-/* Modal Content/Box */
+// Modal box
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
@@ -229,7 +201,7 @@ body {
   border: 1px solid #888;
   width: 80%;
   text-align: center;
-  /* The Close Button */
+// closing button
   .close {
     color: #aaa;
     font-size: 28px;
@@ -244,11 +216,11 @@ body {
     }
   }
   h2 {
-    font-family: $text;
-    font-size:24px;
-    margin-top:40px;
+  font-family: $text;
+  font-size:24px;
+  margin-top:40px;
   }
-  .order-message{
+  .order-message {
     font-family: $text;
     font-size:18px;
     display: flex;

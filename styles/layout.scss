@@ -2,21 +2,18 @@
 $title-text: 'lobster', cursive;
 $text: 'Montserrat', sans-serif;
 $primary-color: #b8860b;
-$break-small: 320px;
-$break-large: 1200px;
+
 
 * {
   box-sizing: border-box;
 }
-
+// layout
 body {
   background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  height: 2000px;
 
 }
-
-
+// navbar
 .total-nav {
   background-color: white;
   background-image: url("https://www.transparenttextures.com/patterns/food.png");
@@ -32,18 +29,15 @@ body {
   display: flex;
   justify-content: space-between;
 }
-  #logo {
-    display:flex;
-    align-items: center;
-  }
-
-  #logo .logo-img {
+#logo {
+  display:flex;
+  align-items: center;
+  .logo-img {
     width: 80px;
     height: 60px;
     margin: 30px 0px 0px 20px;
   }
-
-  #logo h1 {
+  h1 {
     font-size: 40px;;
     color: black;
     margin: 30px 0px 0px 10px;
@@ -51,53 +45,19 @@ body {
     text-decoration: underline 2px black;
     text-decoration: none;
   }
-
-  #logo a {
+  a {
     text-decoration-color: black;
   }
-
-  .welcome-name {
-    font-size: 16px;
-    margin-left: 50px;
-    color: black;
-    font-family: monospace;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    white-space: nowrap; /* Keeps the content on a single line */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation:
-      typing 3.5s steps(30, end),
-      blink-caret .5s step-end infinite;
-  }
-
-  /* The typing effect */
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange }
-  }
-
-
-
-  .menu-container {
-    text-align: center;
-    border: 1px solid black;
-  }
-
-  .list-action {
-    display: flex;
-    align-items: center;
-    margin-top: 0px;
-    font-family: $text;
-    font-size: 20px;
-    color: #000000;
-    text-decoration: none;
-  }
-
+}
+// right side, action button
+.list-action {
+  display: flex;
+  align-items: center;
+  margin-top: 0px;
+  font-family: $text;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
   .register-link {
     margin: 0 20px 20px;
     a {
@@ -114,38 +74,22 @@ body {
       }
     }
   }
+}
 
-  .login-state {
+// Login action
+.login-state {
+  display: flex;
+  .checkout-link {
     display: flex;
-    .checkout-link {
-      display: flex;
-      align-items: baseline;
-      margin-right: 20px;;
-        a {
-          color: #000000;
-          text-decoration: underline black;
-        }
-        i {
-          margin-right:5px;
-          visibility: hidden
-        }
-        &:hover {
-          i {
-            visibility: visible;
-            margin-top: 5px;
-          }
-        }
-      }
-    .logout {
-      .btn {
+    align-items: baseline;
+    margin-right: 20px;;
+      a {
         color: #000000;
         text-decoration: underline black;
-        background-color: transparent;
-        border:none;
-        margin-right: 10px;
       }
       i {
-        visibility: hidden;
+        margin-right:5px;
+        visibility: hidden
       }
       &:hover {
         i {
@@ -154,91 +98,30 @@ body {
         }
       }
     }
-  }
-
-
-
-
-  nav #login-trigger {
-    border-radius: 3px 0 0 3px;
-    background-color: transparent;
-    font-family: $text;
-    font-size: 100%;
-    color: #000000;
-    text-decoration: none;
-
-  }
-
-  nav fieldset {
-    border: none;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
-  }
-
-  nav #login-trigger:hover,
-  nav #login .active,
-  nav #signup a:hover {
-    background: transparent;
-  }
-
-  nav #login-content {
-    width: min-content;
-    display: contents;
-    position: absolute;
-    border: 1px solid goldenrod;
-    top: 110px;
-    right: 0;
-    z-index: 999;
-    background: white;
-    background-image: linear-gradient(top, #fff, #eee);
-    padding: 15px;
-    box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
-    border-radius: 3px 0 3px 3px;
-    visibility: hidden;
-    display:none;
-    margin-right: 20px;
-  }
-
-
-  #login-visible {
-    display: flex;
-    align-items: center;
-    .form-control {
-      background-color: white;
-      border: 2px solid $primary-color;
-      margin:10px;
+  .logout {
+    .btn {
+      color: #000000;
+      text-decoration: underline black;
+      background-color: transparent;
+      border:none;
+      margin-right: 10px;
     }
-
-  nav li #login-content {
-    right: 0;
-    width: 250px;
+    i {
+      visibility: hidden;
+    }
+    &:hover {
+      i {
+        visibility: visible;
+        margin-top: 5px;
+      }
+    }
   }
+}
 
-  #inputs input {
-    background: white;
-    border: 2px solid $primary-color;
-    padding: 6px 5px;
-    margin: 0 0 5px 0;
-    width: 238px;
-    border-radius: 3px;
-
-  }
-
-  #inputs input:focus {
-    background-color: #fff;
-    border-color: #e8c291;
-    outline: none;
-    box-shadow: 0 0 0 1px #e8c291 inset;
-  }
-
-  #login #actions {
-    margin: 10px 0 0 0;
-  }
-
-  #cart-counter {
-    margin-left: 3px;
-  }
-  #login #submit {
+#login {
+  #actions {
+  margin: 10px 0 0 0;
+    #submit {
     margin: 10px;
     background-color: lemonchiffon;
     font-family: 'Montserrat';
@@ -248,23 +131,105 @@ body {
     padding: 0;
     width: 100px;
     cursor: pointer;
-    color: transparent
-  }
-
-
-  #login #submit:active {
-    outline: none;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+    color: black;
+    &:active {
+      outline: none;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+      }
+    }
   }
 }
 
+#login-trigger {
+  border-radius: 3px 0 0 3px;
+  background-color: transparent;
+  font-family: $text;
+  font-size: 100%;
+  color: #000000;
+  text-decoration: none;
+  &:hover,
+  &.active,
+  &a:hover {
+    background: transparent;
+  }
 
-// @media only screen and (min-width: 800px) {
-//   .checkout-link {
-//     font-size: large;
-//     margin: 40px 30px 20px 30px;
-//   }
-// }
+}
+
+#login-content {
+  width: min-content;
+  display: contents;
+  position: absolute;
+  border: 1px solid goldenrod;
+  top: 110px;
+  right: 0;
+  z-index: 999;
+  background: white;
+  background-image: linear-gradient(top, #fff, #eee);
+  padding: 15px;
+  box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
+  border-radius: 3px 0 3px 3px;
+  visibility: hidden;
+  display:none;
+  margin-right: 20px;
+  #login-visible {
+    display: flex;
+    align-items: center;
+    .form-control {
+      background-color: white;
+      border: 2px solid $primary-color;
+      margin:10px;
+    }
+  }
+}
+
+nav li #login-content {
+  width: 250px;
+  right: 0;
+}
+
+fieldset {
+  border: none;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  #inputs {
+    input {
+    background: white;
+    border: 2px solid $primary-color;
+    padding: 6px 5px;
+    margin: 0 0 5px 0;
+    width: 238px;
+    border-radius: 3px;
+    &:focus {
+      background-color: #fff;
+      border-color: #e8c291;
+      outline: none;
+      box-shadow: 0 0 0 1px #e8c291 inset;
+      }
+    }
+  }
+}
+
+.welcome-name {
+  font-size: 16px;
+  margin-left: 50px;
+  color: black;
+  font-family: monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  letter-spacing: .15em;
+  animation:
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+// typing effect
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+
+
 
 
 
