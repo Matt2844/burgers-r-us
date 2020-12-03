@@ -10,6 +10,11 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 const bcrypt = require("bcrypt");
+const notifyOrderRecieved = require("./twilioSMS");
+
+//////// TWILIO ----------
+
+
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -73,11 +78,6 @@ const errorMessage = [
   "You're already a member! please log in.🍔 "
 ]
 
-const navMessages = [
-  "Hi <%=user.name%>! What can we get you today?",
-  "Are you starving <%=user.name%>? Maybe you should try our Burger Tower",
-  "How about we get you started with a few (or many) apetizers ${<%=user.name%>}?",
-]
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -164,6 +164,8 @@ app.get('/checkout', (req, res) => {
     res.render("checkout", templateVars);
   })
 });
+
+notifyOrderRecieved(app);
 
 app.post("/logout", (req, res) => {
   res.clearCookie("session"); /// res.cookies can erase a cooking by refering only to it's name

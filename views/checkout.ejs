@@ -10,8 +10,8 @@
 
   <!-- Bootstrap-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -60,9 +60,7 @@
           </div>
           <div class="item-details">
             <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Bacon, mushrooms, caramelized onions, smoky BBQ sauce, cheddar and Monterey
-
-        Jack. Also served without mushrooms for people with working taste buds">
-              Burger Template
+        Jack. Also served without mushrooms for people with working taste buds">Burger Template
             </button>
             <div class="quantity">
               <button class="plus-btn" type="button" name="button">
@@ -74,9 +72,6 @@
                 <i class="fas fa-minus"></i>
               </button>
               <span class="cart-total-price">0.00$</span>
-
-
-              <!-- <input class="price" type="text" placeholder="125" name="price"><i class="fas fa-dollar-sign fa-2x"></i> -->
             </div>
           </div>
         </div>
@@ -85,7 +80,6 @@
 
 
 
-    <!-- <input class="price" type="text" name="price"> -->
   </div>
   </div>
   </div>
@@ -107,6 +101,9 @@
   <section class="confirm-order">
     <div>
 
+ <button class="order-button">Confirm Order</button>
+
+
       <!-- Trigger/Open The Modal -->
       <button id="myBtn" class="order-button">Confirm Order</button>
 
@@ -117,16 +114,16 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <h2>Thank you <%= user.name %> for odering at BURGERS-R-US !</h2>
-            <div class="order-message">
-              <p>We sent an SMS to <%= user.phone_number %></p>
-              <p>Check your phone to know when to swingby to our takeaway counter</p>
-              <P>and pick up your delicious food !</p>
-                <div class="typewritter">
-                  <h3>Bon appetit !</h3>
-                </div>
+          <div class="order-message">
+            <p>We sent an SMS to <%= user.phone_number %></p>
+            <p>Check your phone to know when to swingby to our takeaway counter</p>
+            <P>and pick up your delicious food !</p>
+            <div class="typewritter">
+              <h3>Bon appetit !</h3>
             </div>
-          <img class="logo-img" src="./docs/logo_burgersrus.png">
           </div>
+          <img class="logo-img" src="./docs/logo_burgersrus.png">
+        </div>
       </div>
     </div>
   </section>
@@ -141,7 +138,7 @@
   // })
 
   // Loading jQuery
-  $(document).ready(function() {
+  $(document).ready(function () {
     console.log(`loaded checkout below`)
     // The stored food cart items from the menu page
     let cart_now = JSON.parse(localStorage.getItem('cart'))
@@ -195,7 +192,7 @@
             <i class="fas fa-minus"></i>
           </button>
           <span class="cart-total-price">${price}$</span>
-          <span class="quantity-times-price" style="font-size:1px;visibility:hidden;">${price}</span>
+          <span class="quantity-times-price" style="font-size:1px;">${price}</span>
 
         </div>
       </div>
@@ -208,8 +205,38 @@
 
     console.log('end of items');
 
+    // Calculating the subtotal
+    let getTotal = function() {
+      var total = 0;
+      $('.quantity-times-price').each(function() {
+        let addToSubtotal = parseFloat($(this).html());
+        total += addToSubtotal
+        total
+      });
+      return total;
+    }
+
+    // Calling the getTotal function so that the price loads when the page is loaded
+    $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+
+    // Calculating the taxes (14.975%) and placing them into the HTML
+    const getTaxes = function() {
+      let subTotal = $('#cart-subtotal').html();
+      let taxes = subTotal.slice(0, -1) * 0.14975
+      $('#cart-tax').html(taxes.toFixed(2) + '$');
+    }
+    getTaxes();
+
+    const getGrandTotal = function() {
+      let sub = Number(($('#cart-tax').html().slice(0, -1)));
+      let tax = Number(($('#cart-subtotal').html().slice(0, -1)));
+      let grandTotal = sub + tax;
+      $('#cart-total').html(grandTotal.toFixed(2) + '$');
+    }
+    getGrandTotal();
+
     // When the quantity button is clicked to add OR subtract item
-    $('.food-item-btn').click(function() {
+    $('.food-item-btn').click(function () {
 
       // Selecting the item price and removing the dollar sign
       let quantityTimesPrice = 0;
@@ -220,12 +247,9 @@
       // Get the specific subtotal for that specific item
       let thisItemSubtotal = buttonDiv.find(".quantity-times-price");
 
-      // Testing
-      console.log(typeof $('.quantity-times-price').html())
-
       // The buttons that change the item quantity
       let $btn = $(this);
-      $('#output-' + $btn.data('index')).html(function(i, val) {
+      $('#output-' + $btn.data('index')).html(function (i, val) {
         val = val * 1 + $btn.data('inc');
 
         if (val < 0) {
@@ -235,39 +259,55 @@
           alert('Woah there! No parties allowed during a pandemic! - J.Trudeau')
         }
 
-        // Adding up the subtotals and inserting it into an HTML placeholder
+        // Adding up the subtotals and inserting it into a placeholder
         quantityTimesPrice = (val * thisPriceNum);
+        console.log(quantityTimesPrice.toFixed(2))
         thisItemSubtotal.html(quantityTimesPrice.toFixed(2));
+
+        // Calling the subtotal function so that it updates with each change in the quantity.
+        $('#cart-subtotal').text(getTotal().toFixed(2) + '$');
+        // Calling the taxes function so that it updates with each change in the quantity.
+        getTaxes();
+        // Calling the grand total function so that it updates with each change in the quantity.
+        getGrandTotal();
 
         return val;
       });
+
+
+
     });
+
   });
 
 
-//// MODAL ////
-//Get the modal
-var modal = document.getElementById("myModal");
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
+  //// MODAL ////
+  //Get the modal
+  var modal = document.getElementById("myModal");
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+  // When the user clicks on the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+    return $.post("/order", {}).then(function() {
+      console.log("order received");
+    });
+  };
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
     modal.style.display = "none";
+ }); // End of jQuery  "Document Ready".
+
+
   }
-}
-
-
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 </script>
 
 </html>
