@@ -2,10 +2,10 @@ LHL Node Skeleton
 =========
 
 ## Final result 
-!["Screenshot of the homepage"](docs/HomePage.png)
-!["Screenshot of register page"](docs/registerPage.png)
-!["Screenshot of error page"](docs/errorPage.png)
-!["Functionnalities of checkout Page"](docs/checkout.png)
+!["Screenshot of the homepage"](https://github.com/Matt2844/burgers-r-us/blob/master/public/docs/HomePage.png)
+!["Screenshot of register page"](https://github.com/Matt2844/burgers-r-us/blob/master/public/docs/registerPage.png)
+!["Screenshot of error page"](https://github.com/Matt2844/burgers-r-us/blob/master/public/docs/errorPage.png)
+!["Functionnalities of checkout Page"](https://github.com/Matt2844/burgers-r-us/blob/master/public/docs/girCheckout.gif)
 
 
 ## Project Setup
