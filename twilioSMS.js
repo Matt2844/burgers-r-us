@@ -3,7 +3,6 @@ const accountSid = process.env.Twilio_SID; // Your Account SID from www.twilio.c
 const authToken = process.env.Twilio_token;  // Your Auth Token from www.twilio.com/console
 const twilio = require('twilio');
 const client = new twilio(accountSid, authToken);
-
 const textNotification = function(app) {
   app.post("/order", function({body}, res) {
     client.messages.create({
@@ -13,5 +12,4 @@ const textNotification = function(app) {
    }).then(message => console.log(message.sid));
   });
 };
-
 module.exports = textNotification;
