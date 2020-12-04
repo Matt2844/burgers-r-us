@@ -1,6 +1,13 @@
 LHL Node Skeleton
 =========
 
+## Final result 
+!["Screenshot of the homepage"](docs/HomePage.png)
+!["Screenshot of register page"](docs/registerPage.png)
+!["Screenshot of error page"](docs/errorPage.png)
+!["Functionnalities of checkout Page"](docs/checkout.png)
+
+
 ## Project Setup
 
 The following steps are only for _one_ of the group members to perform.
